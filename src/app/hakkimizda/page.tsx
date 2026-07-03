@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Shield, Target, Eye, Zap, Award, ArrowDown, ArrowRight, Factory, Globe2, BatteryCharging } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n";
 
 const values = [
   {
@@ -55,6 +56,7 @@ const milestones = [
 ];
 
 export default function AboutPage() {
+  const { lang } = useLanguage();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -89,8 +91,10 @@ export default function AboutPage() {
                 Bir Saray Holding Markası
               </span>
               <h1 className="text-6xl md:text-9xl font-medium text-white tracking-tighter leading-none">
-                Enerji Dönüşümünün <br />
-                <span className="text-gray-300">Çözüm Ortağı</span>
+                {lang === "en" ? "Energy Transformation" : "Enerji Dönüşümünün"} <br />
+                <span className="text-gray-300">
+                  {lang === "en" ? "Solution Partner" : "Çözüm Ortağı"}
+                </span>
               </h1>
             </motion.div>
 
@@ -129,8 +133,10 @@ export default function AboutPage() {
                   Newstag Enerji
                 </span>
                 <h2 className="text-4xl md:text-6xl font-medium text-[#1e3a8a] tracking-tighter leading-tight mb-8">
-                  65 Yıllık Miras, <br />
-                  <span className="text-[#ea580c]">Yeni Nesil Enerji</span>
+                  {lang === "en" ? "65 Years of Heritage," : "65 Yıllık Miras,"} <br />
+                  <span className="text-[#ea580c]">
+                    {lang === "en" ? "Next-Generation Energy" : "Yeni Nesil Enerji"}
+                  </span>
                 </h2>
                 <div className="space-y-6 text-lg text-gray-600 font-light leading-relaxed">
                   <p>
@@ -205,7 +211,15 @@ export default function AboutPage() {
                 transition={{ duration: 1 }}
               >
                 <h2 className="text-5xl md:text-7xl font-medium mb-8 tracking-tighter leading-none">
-                  <span className="text-[#f97316]">Saray Holding</span> Güvencesi
+                  {lang === "en" ? (
+                    <>
+                      Backed by <span className="text-[#f97316]">Saray Holding</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-[#f97316]">Saray Holding</span> Güvencesi
+                    </>
+                  )}
                 </h2>
                 <div className="space-y-6">
                   <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed">

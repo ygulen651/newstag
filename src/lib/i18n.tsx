@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { applyAutoTranslation, observeAutoTranslation } from "@/lib/auto-translate";
 
 export type Language = "tr" | "en";
 
@@ -167,6 +168,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.lang = "en";
     }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    const frame = window.requestAnimationFrame(() => applyAutoTranslation(lang));
+    const stopObserver = observeAutoTranslation(lang);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      stopObserver();
+    };
+  }, [lang]);
 
   const setLang = (next: Language) => {
     setLangState(next);
