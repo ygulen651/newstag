@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -)",
+      "Bash(cd \"C:\\\\Users\\\\i370t\\\\Downloads\\\\projemsi\\\\newstag-main\\\\src\" && rm components/home/Stories.tsx components/home/Solutions.tsx && rm -rf app/haberler app/markalar/sungrow && mkdir -p app/bess/[slug] \"app/isi-pompasi/[slug]\" \"app/cozumlerimiz/[slug]\" && ls app)",
+      "Bash(cd \"C:\\\\Users\\\\i370t\\\\Downloads\\\\projemsi\\\\newstag-main\\\\src\\\\app\\\\markalar\" && rm -rf \"inspur/[slug]\" \"thermaplus/[slug]\" && ls -R)",
+      "Bash(npm run *)",
+      "Bash(npx eslint *)"
+    ]
+  }
+}

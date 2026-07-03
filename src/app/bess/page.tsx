@@ -1,0 +1,579 @@
+"use client";
+
+import React from "react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BatteryCharging,
+  Building2,
+  Cable,
+  Cpu,
+  Gauge,
+  Globe2,
+  LineChart,
+  PlugZap,
+  Power,
+  ShieldCheck,
+  Sun,
+  Zap,
+} from "lucide-react";
+import { bessProducts } from "@/lib/product-data";
+
+const heroStats = [
+  { value: "1 GWh", label: "Yaklaşan kurulum deneyimi" },
+  { value: "400 MWh", label: "Tek projede kurulum" },
+  { value: "<20 ms", label: "Devreye girme süresi" },
+];
+
+const flowSteps = [
+  {
+    title: "GES / Şebeke",
+    desc: "Üretim veya ucuz tarife enerjisi sisteme alınır.",
+    icon: Sun,
+    align: "lg:col-start-1 lg:row-start-1",
+  },
+  {
+    title: "PCS",
+    desc: "AC/DC dönüşümü milisaniyeler içinde yönetilir.",
+    icon: Cable,
+    align: "lg:col-start-2 lg:row-start-2",
+  },
+  {
+    title: "Batarya",
+    desc: "LFP hücrelerde güvenli ve ölçeklenebilir depolama yapılır.",
+    icon: BatteryCharging,
+    align: "lg:col-start-3 lg:row-start-1",
+  },
+  {
+    title: "EMS / BMS",
+    desc: "Yazılım, batarya sağlığını ve enerji akışını optimize eder.",
+    icon: Cpu,
+    align: "lg:col-start-4 lg:row-start-2",
+  },
+  {
+    title: "Yük / Şebeke",
+    desc: "Enerji ihtiyaç anında tesise veya şebekeye aktarılır.",
+    icon: Zap,
+    align: "lg:col-start-5 lg:row-start-1",
+  },
+];
+
+const benefits = [
+  {
+    title: "Arbitraj ile Tasarruf",
+    desc: "Akıllı EMS ile en ucuz saatte şarj edilen enerjiyi en pahalı saatte kullanarak net getiri elde edin.",
+    icon: LineChart,
+  },
+  {
+    title: "Pik Güç Tıraşlama",
+    desc: "Anlık yüksek güç gereksinimlerini BESS ile karşılayın; güç aşım bedellerini ve kapasite baskısını azaltın.",
+    icon: Gauge,
+  },
+  {
+    title: "Operasyonel Süreklilik",
+    desc: "20 ms'nin altında devreye girme ile kesintisiz üretim; duruş kaynaklı maliyetleri engelleyin.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Lisanssız GES Tamamlayıcısı",
+    desc: "Saatlik mahsuplaşma döneminde gündüz üretimini depolayarak kazanca çevirin, kırpıntı kayıplarını önleyin.",
+    icon: Sun,
+  },
+  {
+    title: "Kapasite Kısıtını Aşma",
+    desc: "Kapasite kısıtı olan saatlerde BESS üzerinden enerji sağlayın; trafo yatırımını ve bekleme süresini erteleyin.",
+    icon: BatteryCharging,
+  },
+  {
+    title: "Reaktif Güç Kompanzasyonu",
+    desc: "Dinamik reaktif güç dengeleme ve gerilim regülasyonu ile ceza risklerini ortadan kaldırın.",
+    icon: PlugZap,
+  },
+  {
+    title: "Harmonik Kompanzasyonu",
+    desc: "Aktif harmonik filtreleme ile ekipman ömrünü uzatın, enerji iletim kayıplarını azaltın.",
+    icon: Cable,
+  },
+  {
+    title: "Jeneratör İkamesi",
+    desc: "Yüksek yakıt maliyetli jeneratör yerine ekonomik, sessiz ve temiz yedek enerji kullanın.",
+    icon: Zap,
+  },
+  {
+    title: "Frekans Kontrolü",
+    desc: "Milisaniyeler içinde tepkiyle primer ve sekonder frekans dengeleme hizmetlerinden ilave gelir kazanın.",
+    icon: Power,
+  },
+];
+
+const inspurStats = [
+  { value: "$31B+", label: "Yıllık Gelir (USD)" },
+  { value: "Top 3", label: "Global Sunucu Üreticisi" },
+  { value: "120", label: "Ülkede Aktif Operasyon" },
+  { value: "31.000+", label: "Global Patent Portföyü" },
+];
+
+const inspurReasons = [
+  {
+    title: "IT Dünyasının Devi",
+    desc: "1945'te kurulan Inspur, bugün 3 borsada işlem gören bir teknoloji holdingi. Yapay zeka sunucularında dünya lideri olan şirket, bu birikimini enerji depolama sistemlerine taşıyor.",
+    icon: Globe2,
+  },
+  {
+    title: "Ar-Ge ve Mühendislik Gücü",
+    desc: "36.000 çalışanının %60'ı Ar-Ge ve mühendislik kadrosunda. IT altyapısı yazılım gücünü BESS'e entegre eden tek oyuncu.",
+    icon: Cpu,
+  },
+  {
+    title: "Kanıtlanmış Saha Deneyimi",
+    desc: "1 GWh'a yaklaşan kurulum deneyimi; Rizhao Santral Projesi'nde tek seferde 200 MW / 400 MWh kurulum başarısı.",
+    icon: BatteryCharging,
+  },
+  {
+    title: "Güvenlik ve Uzun Ömür",
+    desc: "8.000+ çevrim ömrü, ürün ömrünü %15'e kadar artıran sıvı soğutma, entegre yangın koruma ve hücre bazlı izleme.",
+    icon: ShieldCheck,
+  },
+];
+
+const investSteps = [
+  {
+    title: "Enerji Arbitrajı",
+    desc: "Ucuz tarifeden şarj, pahalı saatlerde deşarj stratejisi ile net getiri.",
+  },
+  {
+    title: "Yan Gelir Avantajları",
+    desc: "Pik güç tıraşlama, jeneratör ikamesi, reaktif güç cezası engelleme ve frekans kontrolü gibi ilave gelirler.",
+  },
+  {
+    title: "Kiralama ve Teşvik Modelleri",
+    desc: "Teşvik, leasing, kredi veya ESCO gibi ilk yatırım tasarrufu yaratan modellerle kolay yatırım.",
+  },
+  {
+    title: "Şarj Başına Maliyet Şeffaflığı",
+    desc: "8.000+ çevrim ömrü ve önleyici bakım ile muadillerine göre çok daha uygun toplam sahip olma maliyeti.",
+  },
+];
+
+export default function BessPage() {
+  return (
+    <>
+      <Navbar />
+      <main className="pt-24 bg-white overflow-hidden">
+        {/* Hero */}
+        <section className="relative py-28 md:py-36 bg-[#f8fafc]">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ea580c]/10 text-[#ea580c] font-bold text-sm mb-8 uppercase tracking-widest">
+                  <BatteryCharging className="w-4 h-4" /> Batarya Enerji Depolama Sistemi
+                </div>
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 text-[#1e3a8a]">
+                  Inspur <span className="text-[#ea580c]">BESS</span>
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed mb-10 max-w-xl font-light">
+                  Enerji güvenliğinin ana oyuncusu. BESS; elektrik enerjisini
+                  bataryalarda depolayan ve ihtiyaç anında şebekeye, tesise veya
+                  kritik yüklere geri veren enerji depolama sistemidir. GES,
+                  şebeke, jeneratör ve tüketim altyapısı arasında esneklik
+                  sağlayarak maliyet, süreklilik ve güç kalitesini aynı anda
+                  yönetir.
+                </p>
+                <div className="grid grid-cols-3 gap-4 max-w-xl">
+                  {heroStats.map((item) => (
+                    <div
+                      key={item.label}
+                      className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-center"
+                    >
+                      <p className="text-2xl font-bold text-[#ea580c] mb-1">{item.value}</p>
+                      <p className="text-xs font-medium text-gray-500 leading-snug">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl bg-white"
+              >
+                <Image
+                  src="/images/products/bess-konteyner-xl.png"
+                  alt="Inspur konteyner tipi BESS"
+                  fill
+                  className="object-contain p-8"
+                  priority
+                />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Nasıl Çalışır - animated visual system */}
+        <section className="relative overflow-hidden bg-[#07152f] py-24 text-white">
+          <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
+          <motion.div
+            animate={{ opacity: [0.25, 0.6, 0.25], scale: [1, 1.08, 1] }}
+            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
+            className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1e3a8a]/40 blur-[120px]"
+          />
+          <div className="container relative z-10 mx-auto px-6">
+            <div className="mx-auto mb-14 max-w-3xl text-center">
+              <span className="mb-4 block text-xs font-bold uppercase tracking-[0.45em] text-[#f97316]">
+                Enerji Akış Haritası
+              </span>
+              <h2 className="mb-6 text-4xl font-bold md:text-6xl">
+                BESS Nasıl Çalışır?
+              </h2>
+              <p className="text-lg font-light leading-relaxed text-white/70">
+                Enerji önce kaynaktan alınır, güç elektroniğiyle dönüştürülür,
+                bataryada saklanır ve akıllı kontrol katmanı tarafından doğru
+                anda sahaya geri verilir.
+              </p>
+            </div>
+
+            <div className="relative mx-auto max-w-7xl">
+              <svg
+                viewBox="0 0 1200 560"
+                className="pointer-events-none absolute inset-x-0 top-2 z-0 hidden h-[560px] w-full overflow-visible lg:block"
+                aria-hidden="true"
+              >
+                <path
+                  d="M240 150 C300 150 285 430 360 430 C455 430 455 150 560 150 C665 150 665 430 800 430 C910 430 900 150 1035 150"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.18)"
+                  strokeLinecap="round"
+                  strokeWidth="14"
+                />
+                <path
+                  d="M240 150 C300 150 285 430 360 430 C455 430 455 150 560 150 C665 150 665 430 800 430 C910 430 900 150 1035 150"
+                  fill="none"
+                  stroke="rgba(7,21,47,0.9)"
+                  strokeLinecap="round"
+                  strokeWidth="8"
+                />
+                <motion.path
+                  animate={{ strokeDashoffset: [120, -920] }}
+                  transition={{ repeat: Infinity, duration: 5.8, ease: "linear" }}
+                  d="M240 150 C300 150 285 430 360 430 C455 430 455 150 560 150 C665 150 665 430 800 430 C910 430 900 150 1035 150"
+                  fill="none"
+                  stroke="#f97316"
+                  strokeDasharray="34 86"
+                  strokeLinecap="round"
+                  strokeWidth="5"
+                />
+                <motion.circle
+                  animate={{ opacity: [0.35, 1, 0.35], r: [6, 10, 6] }}
+                  transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+                  cx="240"
+                  cy="150"
+                  fill="#f97316"
+                />
+                <motion.circle
+                  animate={{ opacity: [0.35, 1, 0.35], r: [6, 10, 6] }}
+                  transition={{ repeat: Infinity, duration: 1.8, delay: 0.9, ease: "easeInOut" }}
+                  cx="1035"
+                  cy="150"
+                  fill="#f97316"
+                />
+                {[
+                  { cx: 360, cy: 430, delay: 0.25 },
+                  { cx: 560, cy: 150, delay: 0.5 },
+                  { cx: 800, cy: 430, delay: 0.75 },
+                ].map((point) => (
+                  <motion.circle
+                    key={`${point.cx}-${point.cy}`}
+                    animate={{ opacity: [0.25, 0.9, 0.25], r: [5, 8, 5] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 1.8,
+                      delay: point.delay,
+                      ease: "easeInOut",
+                    }}
+                    cx={point.cx}
+                    cy={point.cy}
+                    fill="#f97316"
+                  />
+                ))}
+              </svg>
+
+              <div className="relative z-10 grid grid-cols-1 gap-0 lg:grid-cols-5 lg:grid-rows-[auto_auto] lg:gap-x-6 lg:gap-y-12">
+                {flowSteps.map((step, index) => (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ delay: index * 0.1, duration: 0.55 }}
+                    className={`${step.align} relative pb-10 lg:pb-0`}
+                  >
+                    {index > 0 && (
+                      <div className="absolute -left-3 top-1/2 z-20 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-[#f97316]/60 bg-[#07152f] lg:flex">
+                        <div className="h-2.5 w-2.5 rounded-full bg-[#f97316] shadow-[0_0_18px_rgba(249,115,22,0.9)]" />
+                      </div>
+                    )}
+                    {index < flowSteps.length - 1 && (
+                      <div className="absolute -right-3 top-1/2 z-20 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-[#f97316]/60 bg-[#07152f] lg:flex">
+                        <div className="h-2.5 w-2.5 rounded-full bg-[#f97316] shadow-[0_0_18px_rgba(249,115,22,0.9)]" />
+                      </div>
+                    )}
+                    <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/20 backdrop-blur-md">
+                      <motion.div
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 3,
+                          delay: index * 0.25,
+                          ease: "easeInOut",
+                        }}
+                        className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f97316] text-white shadow-[0_0_28px_rgba(249,115,22,0.35)]"
+                      >
+                        <step.icon className="h-7 w-7" />
+                      </motion.div>
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm font-black text-[#1e3a8a]">
+                          {index + 1}
+                        </span>
+                        <h3 className="text-xl font-bold">{step.title}</h3>
+                      </div>
+                      <p className="text-sm font-light leading-relaxed text-white/68">
+                        {step.desc}
+                      </p>
+                      <motion.div
+                        animate={{ opacity: [0.2, 0.7, 0.2] }}
+                        transition={{ repeat: Infinity, duration: 2.6, delay: index * 0.35 }}
+                        className="absolute -right-10 -top-10 h-28 w-28 rounded-full border border-[#f97316]/40"
+                      />
+                    </div>
+                    {index < flowSteps.length - 1 && (
+                      <div className="absolute bottom-0 left-1/2 flex h-10 -translate-x-1/2 flex-col items-center lg:hidden">
+                        <div className="h-full w-3 rounded-full bg-white/15" />
+                        <motion.div
+                          animate={{ y: [0, 28, 0], opacity: [0.2, 1, 0.2] }}
+                          transition={{ repeat: Infinity, duration: 1.5, delay: index * 0.2 }}
+                          className="absolute top-0 h-4 w-4 rounded-full bg-[#f97316] shadow-[0_0_18px_rgba(249,115,22,0.9)]"
+                        />
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Faydalar */}
+        <section className="py-24 bg-[#f8fafc]">
+          <div className="container mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-6">
+                BESS ile Elde Edilen Faydalar
+              </h2>
+              <div className="w-20 h-1.5 bg-[#ea580c] mx-auto rounded-full" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={benefit.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06, duration: 0.5 }}
+                  className="bg-white rounded-[30px] p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300"
+                >
+                  <benefit.icon className="w-8 h-8 text-[#ea580c] mb-6" />
+                  <h3 className="text-2xl font-bold text-[#1e3a8a] mb-4">{benefit.title}</h3>
+                  <p className="text-gray-500 font-light leading-relaxed">{benefit.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Neden Inspur - premium dark section */}
+        <section className="py-28 bg-[#0b1f4e] text-white relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="text-[#f97316] text-xs font-bold uppercase tracking-[0.4em] mb-4 block">
+                Global Teknoloji Ortağımız
+              </span>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">Neden Inspur?</h2>
+              <p className="text-white/70 text-lg font-light leading-relaxed">
+                Bilişim altyapısı, bulut çözümleri ve yapay zeka sunucularında
+                küresel bir otorite olan Inspur, bu birikimini enerji depolama
+                sistemlerine taşıyor.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {inspurStats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="rounded-[28px] bg-white/5 border border-white/10 p-8 text-center backdrop-blur"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-[#f97316] mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-white/60 font-medium">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {inspurReasons.map((reason, i) => (
+                <motion.div
+                  key={reason.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="rounded-[30px] bg-white/5 border border-white/10 p-8"
+                >
+                  <reason.icon className="w-9 h-9 text-[#f97316] mb-6" />
+                  <h3 className="text-2xl font-bold mb-3">{reason.title}</h3>
+                  <p className="text-white/65 font-light leading-relaxed">{reason.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link
+                href="/markalar/inspur"
+                className="inline-flex items-center gap-3 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-colors hover:bg-white hover:text-[#0b1f4e]"
+              >
+                Inspur Markasını Tanıyın
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Yatırım değil kazanç */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-6">
+                Maliyet Değil; Sürekli Kazanç ve Enerji Güvenliği
+              </h2>
+              <p className="text-gray-500 text-lg font-light">
+                Şartların uygun olduğu noktalarda 5 yılın altında geri dönüş
+                süresi ve %40&apos;ın üzerinde iç verim oranı (IRR) mümkün.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {investSteps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="bg-[#f8fafc] rounded-[28px] p-7 border border-gray-100"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#ea580c] text-white flex items-center justify-center font-bold mb-6">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1e3a8a] mb-3">{step.title}</h3>
+                  <p className="text-gray-500 font-light leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Ürünler */}
+        <section id="urunler" className="py-24 bg-[#f8fafc]">
+          <div className="container mx-auto px-6">
+            <div className="flex items-center gap-4 mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a]">
+                Inspur BESS Ürün Portföyü
+              </h2>
+              <div className="h-px bg-gray-200 flex-1" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {bessProducts.map((product) => (
+                <Link
+                  key={product.slug}
+                  href={`/bess/${product.slug}`}
+                  className="group bg-white rounded-[36px] p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-7 bg-gray-50">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      className={`${
+                        product.imageFit === "contain"
+                          ? "object-contain p-6"
+                          : "object-cover"
+                      } group-hover:scale-105 transition-transform duration-500`}
+                    />
+                  </div>
+                  <span className="text-[#ea580c] text-xs font-bold uppercase tracking-widest">
+                    {product.category}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e3a8a] mt-3 mb-4">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-500 font-light leading-relaxed mb-5">
+                    {product.summary}
+                  </p>
+                  {product.options && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {product.options.map((option) => (
+                        <span
+                          key={option}
+                          className="text-xs font-bold text-[#1e3a8a] bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-lg"
+                        >
+                          {option}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <span className="inline-flex items-center gap-2 font-bold text-[#1e3a8a] group-hover:text-[#ea580c]">
+                    Detayları İncele <ArrowRight className="w-5 h-5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-24 bg-[#1e3a8a] text-white">
+          <div className="container mx-auto px-6 text-center">
+            <Building2 className="w-12 h-12 text-[#f97316] mx-auto mb-8" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+              Projeniz İçin BESS Konfigürasyonu
+            </h2>
+            <p className="text-xl text-white/75 mb-10 max-w-2xl mx-auto font-light">
+              Uygulama alanınıza göre kapasite, güç, soğutma, güvenlik ve
+              kontrol mimarisini birlikte netleştirelim.
+            </p>
+            <Link
+              href="/iletisim"
+              className="inline-flex items-center gap-3 bg-white text-[#1e3a8a] px-10 py-5 rounded-full font-bold hover:bg-[#f97316] hover:text-white transition-colors"
+            >
+              Teklif Al <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
