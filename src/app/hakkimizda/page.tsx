@@ -223,16 +223,20 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-6">
                   <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed">
-                    1961 yılından bu yana sanayi, gıda ve ambalaj sektörlerindeki
-                    liderliğini enerji sektörüne de taşıyan Saray Holding,
-                    sürdürülebilir gelecek vizyonuyla büyümeye devam ediyor.
+                    1961 yılından bu yana gıda, tarım, endüstri, ambalaj, mobilya,
+                    lojistik gibi birçok sektördeki gücünü uzun yıllar önce enerji
+                    sektörüne de taşıyan Saray Holding, sürdürülebilir gelecek
+                    vizyonuyla büyümeye devam ediyor.
                   </p>
                   <p className="text-lg md:text-xl text-white/60 font-light leading-relaxed">
-                    Greeneco Enerji ile jeotermal ve yenilenebilir enerji alanında
-                    atılan güçlü adımlar, bugün{" "}
-                    <span className="font-medium text-white">Newstag Enerji</span>{" "}
-                    çatısı altında batarya enerji depolama sistemleri (BESS) ve
-                    ısı pompası çözümleriyle taçlanıyor.
+                    Jeotermal ve yenilenebilir enerji alanında atılan güçlü
+                    adımlarla bugün Türkiye&apos;nin en büyük yenilenebilir enerji
+                    üreticileri arasında olan Saray,{" "}
+                    <span className="font-medium text-white">Newstag</span>{" "}
+                    markası altında batarya enerji depolama sistemleri (BESS) ve
+                    ısı pompası çözümleriyle enerji sektöründeki hizmet gamını
+                    genişleterek sürdürülebilir geleceğe olan katkılarını
+                    taçlandırıyor.
                   </p>
                 </div>
                 <a

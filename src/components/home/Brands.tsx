@@ -11,7 +11,7 @@ const brands = [
     name: "INSPUR",
     role: "Enerji Depolama (BESS)",
     description:
-      "Yıllık 31 milyar doları aşan geliriyle dünyanın en büyük üç sunucu üreticisinden biri olan Inspur; IT ve bulut altyapısındaki mühendislik gücünü enerji depolama sistemlerine taşıyor. 1 GWh'a yaklaşan kurulum deneyimiyle enerji güvenliğinin ana oyuncusu.",
+      "Çin’in IT devi ve dünyanın en büyük üç sunucu üreticisinden biri olan Inspur; IT ve bulut altyapısındaki mühendislik gücünü enerji depolama sistemlerine taşıyor. 1 GWh'a yaklaşan kurulum deneyimiyle enerji güvenliğinin de ana bir oyuncusu konumunda.",
     image: "/images/products/bess-konteyner.png",
     logo: "/images/image1.png",
     brandHref: "/markalar/inspur",
@@ -37,7 +37,7 @@ export default function Brands() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-24">
           <h2 className="text-4xl md:text-6xl font-medium mb-6 tracking-tight text-[#1e3a8a]">
-            Sektöre Yön Veren <br /> Markalarımız
+            Sektöre Yön Veren <br /> Markalarımız ile Hizmetinizdeyiz
           </h2>
           <p className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg font-light">
             Global teknoloji devi Inspur&apos;un Türkiye distribütörlüğü ve Saray

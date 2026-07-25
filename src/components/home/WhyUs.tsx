@@ -34,7 +34,7 @@ export default function WhyUs() {
             Keşiften projelendirmeye, kurulumdan devreye almaya ve Türkiye
             genelindeki servis ağımızla kurulum sonrası desteğe kadar tüm
             süreci tek çatı altında yönetiyoruz. Gelin, sürdürülebilir bir
-            geleceğe birlikte köprü kuralım.
+            gelecek için enerji dönüşümünüzü bugünden başlatalım.
           </p>
 
           <Link

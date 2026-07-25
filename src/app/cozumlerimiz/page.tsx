@@ -32,7 +32,8 @@ export default function SolutionsPage() {
               kaynaklarıyla entegre ederek; enerji maliyetlerini düşüren, arz
               güvenliğini artıran ve karbon ayak izini ölçülebilir şekilde
               azaltan altyapılar tasarlıyoruz. Enerji santrallerinden
-              konutlara, her sektöre özel mühendislik yaklaşımıyla.
+              konutlara, her sektöre özel mühendislik yaklaşımıyla hizmet
+              veriyoruz.
             </p>
           </motion.div>
 
@@ -45,6 +46,11 @@ export default function SolutionsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.6 }}
+                className={
+                  index === solutions.length - 1
+                    ? "w-full justify-self-center md:col-span-2 md:max-w-[calc(50%-1rem)] lg:col-span-1 lg:col-start-2 lg:max-w-none"
+                    : ""
+                }
               >
                 <Link
                   href={`/cozumlerimiz/${solution.slug}`}

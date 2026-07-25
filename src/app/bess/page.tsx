@@ -26,7 +26,7 @@ import { bessProducts } from "@/lib/product-data";
 const heroStats = [
   { value: "1 GWh", label: "Yaklaşan kurulum deneyimi" },
   { value: "400 MWh", label: "Tek projede kurulum" },
-  { value: "<20 ms", label: "Devreye girme süresi" },
+  { value: "Hızlı", label: "Milisaniyeler içinde devreye girme" },
 ];
 
 const flowSteps = [
@@ -75,12 +75,12 @@ const benefits = [
   },
   {
     title: "Operasyonel Süreklilik",
-    desc: "20 ms'nin altında devreye girme ile kesintisiz üretim; duruş kaynaklı maliyetleri engelleyin.",
+    desc: "Milisaniyeler içinde devreye girerek kesintisiz üretim sağlayın; duruş kaynaklı maliyetleri engelleyin.",
     icon: ShieldCheck,
   },
   {
     title: "Lisanssız GES Tamamlayıcısı",
-    desc: "Saatlik mahsuplaşma döneminde gündüz üretimini depolayarak kazanca çevirin, kırpıntı kayıplarını önleyin.",
+    desc: "Saatlik mahsuplaşma döneminde gündüz üretimini depolayarak kazanca çevirin, şebeke kısıtlama kayıplarını önleyin.",
     icon: Sun,
   },
   {
@@ -508,8 +508,9 @@ export default function BessPage() {
               {bessProducts.map((product) => (
                 <Link
                   key={product.slug}
+                  id={`urun-${product.slug}`}
                   href={`/bess/${product.slug}`}
-                  className="group bg-white rounded-[36px] p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  className="group scroll-mt-28 bg-white rounded-[36px] p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-7 bg-gray-50">
                     <Image

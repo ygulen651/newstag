@@ -30,21 +30,25 @@ const strengths = [
     icon: Cpu,
     title: "Ar-Ge Odaklı Organizasyon",
     desc: "36.000 çalışanın %60'ı Ar-Ge ve mühendislik kadrosunda; 31.000'in üzerinde global patent portföyü.",
+    image: null,
   },
   {
     icon: Server,
     title: "Sunucu Teknolojisinde Liderlik",
     desc: "Yapay zeka sunucularında dünyanın 1 numarası, tüm sunucularda 2 numarası; 178 operatör ve endüstri müşterisine hizmet.",
+    image: "/images/11111.jpg",
   },
   {
     icon: Cloud,
     title: "IT ve Bulut DNA'sı",
     desc: "IT altyapısı yazılım gücünü BESS'e entegre eden tek oyuncu; hücre bazlı izleme ve yapay zeka destekli kontrol.",
+    image: null,
   },
   {
     icon: Zap,
     title: "Sıfır Karbon Vizyonu",
     desc: "BESS ürünleri, Inspur'un sıfır karbon hedefi doğrultusunda yatırım yaptığı ana sektörlerden biri.",
+    image: null,
   },
 ];
 
@@ -91,10 +95,9 @@ export default function InspurBrandPage() {
                   IT Dünyasının <span className="text-[#f97316]">Devi</span>
                 </h1>
                 <p className="text-xl text-white/75 leading-relaxed mb-10 max-w-xl font-light">
-                  1945&apos;te kurulan Inspur, bugün 3 borsada işlem gören bir
-                  teknoloji holdingi. Bilişim altyapısı, bulut çözümleri ve
-                  yapay zeka sunucularında küresel bir otorite olan Inspur, bu
-                  birikimini enerji depolama sistemlerine taşıyor.
+                  Yapay zeka sunucularında dünyanın 1 numarası olmayı başarmış,
+                  tüm sunucu üreticileri arasında dünyanın ilk 3 firması arasında
+                  olan lider şirket.
                 </p>
                 <Link
                   href="/bess"
@@ -161,6 +164,16 @@ export default function InspurBrandPage() {
                   transition={{ delay: index * 0.08, duration: 0.5 }}
                   className="bg-[#f8fafc] rounded-[30px] p-8 border border-gray-100"
                 >
+                  {item.image && (
+                    <div className="relative mb-7 aspect-video overflow-hidden rounded-2xl">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
                   <item.icon className="w-9 h-9 text-[#ea580c] mb-6" />
                   <h3 className="text-2xl font-bold text-[#1e3a8a] mb-4">{item.title}</h3>
                   <p className="text-gray-500 font-light leading-relaxed">{item.desc}</p>

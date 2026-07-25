@@ -37,6 +37,7 @@ export type SolutionSegment = {
   title: string;
   desc: string;
   image?: string;
+  thumbnail?: string;
 };
 
 export type SolutionProduct = {
@@ -120,7 +121,7 @@ const commonBessBenefits: SolutionBenefit[] = [
   {
     icon: Sun,
     title: "Lisanssız GES İçin Tamamlayıcı",
-    desc: "Saatlik mahsuplaşma döneminde gündüz üretimini depolayarak kazanca çevirme, kırpıntı kayıplarını önleme.",
+    desc: "Saatlik mahsuplaşma döneminde gündüz üretimini depolayarak kazanca çevirme, şebeke kısıtlama kayıplarını önleme.",
   },
   {
     icon: Gauge,
@@ -135,7 +136,7 @@ const commonBessBenefits: SolutionBenefit[] = [
   {
     icon: ShieldCheck,
     title: "Operasyonel Süreklilik",
-    desc: "20 ms'nin altında devreye girerek kesintisiz üretim sağlama, duruş kaynaklı maliyetleri engelleme.",
+    desc: "Milisaniyeler içinde devreye girerek kesintisiz üretim sağlama, duruş kaynaklı maliyetleri engelleme.",
   },
   {
     icon: PlugZap,
@@ -251,21 +252,25 @@ export const solutions: Solution[] = [
         icon: Factory,
         title: "Demir-Çelik",
         desc: "Yüksek proses ısısı, yoğun elektrik tüketimi ve kesintisiz üretim ihtiyacı.",
+        thumbnail: "/images/industry-steel.jpg",
       },
       {
         icon: Factory,
         title: "Çimento",
         desc: "Pik yükler, karbon ayak izi ve atık ısı geri kazanımı için güçlü dönüşüm alanı.",
+        thumbnail: "/images/industry-cement.jpg",
       },
       {
         icon: Factory,
         title: "Otomotiv",
         desc: "Robotik hatlar, boyahane ve iklimlendirme yüklerinde verimlilik odağı.",
+        thumbnail: "/images/industry-automotive.jpg",
       },
       {
         icon: Factory,
         title: "Beyaz Eşya",
         desc: "Süreklilik, kalite kontrol ve enerji maliyeti yönetiminin kritik olduğu üretim.",
+        thumbnail: "/images/industry-white-goods.jpg",
       },
     ],
     whyBess: commonBessBenefits,
@@ -282,14 +287,14 @@ export const solutions: Solution[] = [
         desc: "80 °C'ye kadar çıkış suyu sıcaklığıyla endüstriyel proses ihtiyaçlarını karşılama.",
       },
     ],
-    products: [bessContainerProduct, bessCabinetProduct, heatPumpIndustrialProduct],
+    products: [bessCabinetProduct, bessContainerProduct, heatPumpIndustrialProduct],
   },
   {
     slug: "ticari-isletmeler",
     title: "Ticari İşletmeler",
     navTitle: "Ticari İşletmeler",
     icon: Building2,
-    image: "/images/limited-grid-ev-charging.png",
+    image: "/images/commercial-mall.jpg",
     shortDesc:
       "AVM, otel, plaza ve perakende zincirleri için enerji maliyetini düşüren, arz güvenliği sağlayan çözümler.",
     intro: [
@@ -303,21 +308,25 @@ export const solutions: Solution[] = [
         icon: ShoppingBag,
         title: "Alışveriş Merkezleri",
         desc: "Yoğun HVAC, aydınlatma ve ortak alan yüklerinde maliyet kontrolü.",
+        thumbnail: "/images/commercial-mall.jpg",
       },
       {
         icon: Hotel,
         title: "Oteller",
         desc: "7/24 konfor, sıcak su, havuz ısıtması ve iklimlendirmede verimli enerji kullanımı.",
+        thumbnail: "/images/commercial-hotel.jpg",
       },
       {
         icon: Building2,
         title: "Plazalar",
         desc: "Kesintisiz işletme, pik yük yönetimi ve yeşil bina hedeflerine uyum.",
+        thumbnail: "/images/commercial-office.jpg",
       },
       {
         icon: Store,
         title: "Perakende Zincirleri",
         desc: "Çok lokasyonlu yapılarda standart, izlenebilir ve sürdürülebilir enerji altyapısı.",
+        thumbnail: "/images/commercial-retail.jpg",
       },
     ],
     whyBess: commonBessBenefits,
@@ -399,9 +408,9 @@ export const solutions: Solution[] = [
     icon: Server,
     image: "/images/business-scenario.png",
     shortDesc:
-      "Milisaniye seviyesinde devreye giren depolama ve hassas iklimlendirme ile 7/24 kesintisiz operasyon.",
+      "Milisaniyeler içinde devreye giren depolama ve hassas iklimlendirme ile 7/24 kesintisiz operasyon.",
     intro: [
-      "Teknolojinin hayatımıza her geçen gün daha fazla girmesiyle veri merkezlerine olan ihtiyaç da artıyor. 7/24 elektrik tüketen ve kesintiye tahammülü olmayan bu tesisler için yüksek güç, yüksek güvenlik ve milisaniye seviyesinde devreye giren batarya sistemleri gereklidir.",
+      "Teknolojinin hayatımıza her geçen gün daha fazla girmesiyle veri merkezlerine olan ihtiyaç da artıyor. 7/24 elektrik tüketen ve kesintiye tahammülü olmayan bu tesisler için yüksek güç, yüksek güvenlik ve milisaniyeler içinde devreye giren batarya sistemleri gereklidir.",
     ],
     highlight:
       "7/24 hassas, verimli ve çevreci iklimlendirme yapan ısı pompası çözümleri, veri merkezlerinin operasyonel sürekliliğini destekler.",
@@ -409,7 +418,7 @@ export const solutions: Solution[] = [
       {
         icon: ShieldCheck,
         title: "Kesinti Önleme",
-        desc: "UPS ile paralel çalışabilen, milisaniye seviyesinde devreye giren batarya sistemiyle süreklilik.",
+        desc: "UPS ile paralel çalışabilen, milisaniyeler içinde devreye giren batarya sistemiyle süreklilik.",
       },
       {
         icon: Cpu,
@@ -446,6 +455,54 @@ export const solutions: Solution[] = [
       ...commonHeatPumpBenefits,
     ],
     products: [bessContainerProduct, bessCabinetProduct, heatPumpIndustrialProduct],
+  },
+  {
+    slug: "arac-sarj-noktalari",
+    title: "Araç Şarj Noktaları",
+    navTitle: "Araç Şarj Noktaları",
+    icon: PlugZap,
+    image: "/images/limited-grid-ev-charging.png",
+    shortDesc:
+      "Şebeke kapasitesinin yetersiz kaldığı lokasyonlarda hızlı şarj altyapısını BESS ile gecikmeden ve daha düşük yatırımla devreye alın.",
+    intro: [
+      "Ultra hızlı araç şarjı artık sürücülerin her lokasyonda beklediği temel bir hizmet. Ancak mevcut şebeke kapasitesi çoğu noktada yüksek güçlü şarj ünitelerinin ani enerji talebini karşılamıyor; bu durum hem elektrik altyapısını zorluyor hem de yatırımcıyı ilave trafo yatırımı, bağlantı izinleri ve uzun bekleme süreleriyle karşı karşıya bırakıyor.",
+      "BESS destekli şarj altyapısı, şebekeden gelen sınırlı gücü depolayıp ihtiyaç anında şarj ünitelerine yüksek güç olarak aktarır. Böylece ağır ve geri alınamaz bir trafo yatırımına kıyasla daha düşük başlangıç maliyetiyle çözüm hızla devreye alınır; modüler sistem ihtiyaçla birlikte büyür ve lokasyon değiştiğinde başka bir noktaya taşınarak yatırım değerini korur.",
+    ],
+    highlight:
+      "Şarj ağınızı bağlantı kapasitesini beklemeden yaygınlaştırın; ilk yatırım anından itibaren altyapı maliyetinden, zamandan ve işletme giderlerinden tasarruf edin.",
+    whyBess: [
+      {
+        icon: PlugZap,
+        title: "Ultra Hızlı Şarj Gücü",
+        desc: "Şebekenin tek başına karşılayamadığı ani yüksek güç talebini bataryadan sağlayarak ultra hızlı şarj hizmeti sunma.",
+      },
+      {
+        icon: Cable,
+        title: "Şebeke Kısıtını Aşma",
+        desc: "Mevcut bağlantı kapasitesini yükseltmeyi beklemeden şarj noktasını hızla devreye alma.",
+      },
+      {
+        icon: LineChart,
+        title: "Daha Düşük İlk Yatırım",
+        desc: "İlave trafo ve ağır şebeke altyapısı yerine modüler BESS ile yatırım maliyetini azaltma.",
+      },
+      {
+        icon: MapPin,
+        title: "Taşınabilir Yatırım",
+        desc: "Lokasyon ihtiyacı değiştiğinde sistemi başka bir şarj noktasına taşıyarak yatırım değerini koruma.",
+      },
+      {
+        icon: Gauge,
+        title: "Pik Güç Yönetimi",
+        desc: "Eş zamanlı şarj taleplerini dengeleyerek şebeke üzerindeki baskıyı ve güç aşım maliyetlerini düşürme.",
+      },
+      {
+        icon: Sun,
+        title: "GES Entegrasyonu",
+        desc: "Güneş enerjisini depolayıp araç şarjında kullanarak enerji maliyetini ve karbon ayak izini azaltma.",
+      },
+    ],
+    products: [bessCabinetProduct, bessFlexCubeProduct],
   },
   {
     slug: "sinirli-sebeke",

@@ -34,7 +34,7 @@ const brands = [
     stats: [
       { value: "A+++", label: "Enerji Verimliliği" },
       { value: "3-5", label: "COP Değeri" },
-      { value: "%75", label: "Tasarrufa Varan" },
+      { value: "%75", label: "Varan Tasarruf" },
     ],
   },
 ];

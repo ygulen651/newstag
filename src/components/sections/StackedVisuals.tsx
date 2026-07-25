@@ -92,7 +92,7 @@ export default function StackedVisuals() {
       title: t.banners.bessTitle,
       cta: t.common.exploreProducts,
       href: "/bess",
-      image: "/images/e9551124-2722-4454-bf42-e6d7ff187aec.png",
+      image: "/images/12121.png",
       imagePosition: "object-center",
     },
     {

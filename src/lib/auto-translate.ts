@@ -62,6 +62,9 @@ const exactTranslations: Record<string, string> = {
   "2 Marka": "2 Brands",
 
   "Sektöre Yön Veren": "Leading the Industry",
+  "Markalarımız ile Hizmetinizdeyiz": "At Your Service with Our Brands",
+  "Çin’in IT devi ve dünyanın en büyük üç sunucu üreticisinden biri olan Inspur; IT ve bulut altyapısındaki mühendislik gücünü enerji depolama sistemlerine taşıyor. 1 GWh'a yaklaşan kurulum deneyimiyle enerji güvenliğinin de ana bir oyuncusu konumunda.":
+    "China’s IT giant and one of the world’s three largest server manufacturers, Inspur brings its engineering expertise in IT and cloud infrastructure to energy storage systems. With nearly 1 GWh of installation experience, it is also a major player in energy security.",
   "Ürün Markalarımız": "Our Product Brands",
   "Her İhtiyaca": "For Every Need",
   "Özel Çözümler": "Tailored Solutions",
@@ -164,6 +167,8 @@ const exactTranslations: Record<string, string> = {
   "IT Dünyasının Devi": "IT Industry Giant",
   "IT Dünyasının": "The Giant of IT",
   Devi: "World",
+  "Yapay zeka sunucularında dünyanın 1 numarası olmayı başarmış, tüm sunucu üreticileri arasında dünyanın ilk 3 firması arasında olan lider şirket.":
+    "The industry leader ranked number one worldwide in AI servers and among the world's top three server manufacturers.",
 
   "Demir-Çelik": "Iron and Steel",
   Çimento: "Cement",
@@ -254,10 +259,14 @@ const phraseTranslations: Record<string, string> = {
     "As Inspur's partner in Turkiye for battery energy storage systems and with our registered Thermaplus heat pump brand, we build efficient, safe, and low-carbon energy infrastructure at every scale, from power plants and industrial facilities to commercial businesses and homes.",
   "Keşiften projelendirmeye, kurulumdan devreye almaya ve Türkiye genelindeki servis ağımızla kurulum sonrası desteğe kadar tüm süreci tek çatı altında yönetiyoruz.":
     "From site survey and project design to installation, commissioning, and after-sales support through our nationwide service network, we manage the entire process under one roof.",
-  "1961 yılından bu yana sanayi, gıda ve ambalaj sektörlerindeki liderliğini enerji sektörüne de taşıyan Saray Holding, sürdürülebilir gelecek vizyonuyla büyümeye devam ediyor.":
-    "Since 1961, Saray Holding has carried its leadership in industry, food, and packaging into the energy sector and continues to grow with a vision for a sustainable future.",
-  "Greeneco Enerji ile jeotermal ve yenilenebilir enerji alanında atılan güçlü adımlar, bugün Newstag Enerji çatısı altında batarya enerji depolama sistemleri (BESS) ve ısı pompası çözümleriyle taçlanıyor.":
-    "The strong steps taken in geothermal and renewable energy with Greeneco Enerji are now strengthened under Newstag Enerji with battery energy storage systems (BESS) and heat pump solutions.",
+  "Gelin, sürdürülebilir bir gelecek için enerji dönüşümünüzü bugünden başlatalım.":
+    "Let’s start your energy transformation today for a sustainable future.",
+  "BESS ve Isı Pompası teknolojilerini yenilenebilir enerji kaynaklarıyla entegre ederek; enerji maliyetlerini düşüren, arz güvenliğini artıran ve karbon ayak izini ölçülebilir şekilde azaltan altyapılar tasarlıyoruz. Enerji santrallerinden konutlara, her sektöre özel mühendislik yaklaşımıyla hizmet veriyoruz.":
+    "By integrating BESS and heat pump technologies with renewable energy sources, we design infrastructure that lowers energy costs, improves supply security, and measurably reduces carbon footprints. From power plants to homes, we serve every sector with a tailored engineering approach.",
+  "1961 yılından bu yana gıda, tarım, endüstri, ambalaj, mobilya, lojistik gibi birçok sektördeki gücünü uzun yıllar önce enerji sektörüne de taşıyan Saray Holding, sürdürülebilir gelecek vizyonuyla büyümeye devam ediyor.":
+    "Since 1961, Saray Holding has built strength across many sectors—including food, agriculture, industry, packaging, furniture, and logistics—and expanded into the energy sector many years ago. Today, it continues to grow with a vision for a sustainable future.",
+  "Jeotermal ve yenilenebilir enerji alanında atılan güçlü adımlarla bugün Türkiye'nin en büyük yenilenebilir enerji üreticileri arasında olan Saray, Newstag markası altında batarya enerji depolama sistemleri (BESS) ve ısı pompası çözümleriyle enerji sektöründeki hizmet gamını genişleterek sürdürülebilir geleceğe olan katkılarını taçlandırıyor.":
+    "Now among Turkiye's largest renewable energy producers following major investments in geothermal and renewable energy, Saray is expanding its energy services under the Newstag brand with battery energy storage systems (BESS) and heat pump solutions, further strengthening its contribution to a sustainable future.",
 };
 
 const wordTranslations: Record<string, string> = {
@@ -853,7 +862,6 @@ const turkishStemTranslations: Array<[string, string]> = [
   ["kazan", "gain"],
   ["keş", "survey"],
   ["kesinti", "outage"],
-  ["kırpıntı", "curtailment"],
   ["kısıt", "constraint"],
   ["kıyas", "comparison"],
   ["konfor", "comfort"],

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, BatteryCharging, Factory, Globe2, Zap } from "lucide-react";
 import Link from "next/link";
@@ -27,7 +28,7 @@ const stats = [
   {
     value: "400",
     unit: "MWh",
-    label: "Tek Projede Kurulum (Rizhao Santrali)",
+    label: "Tek Projede Kurulum",
     icon: Zap,
   },
   {
@@ -78,6 +79,14 @@ export default function Trust() {
               Bir Saray Holding Markası
             </span>
           </span>
+
+          <Image
+            src="/images/image5.png"
+            alt="Newstag Energy Solutions"
+            width={1155}
+            height={255}
+            className="mx-auto mb-12 h-auto w-full max-w-md"
+          />
 
           <h2 className="text-[#ea580c] text-3xl md:text-5xl font-medium mb-12">
             Enerji Dönüşümünüzün Çözüm Ortağı

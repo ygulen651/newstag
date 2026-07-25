@@ -72,7 +72,7 @@ const tr: Dictionary = {
   hero: {
     badge: "Bir Saray Holding Markası",
     titleLine1: "Enerjiyi Bugünden",
-    titleLine2: "Geleceğe Taşıyın",
+    titleLine2: "Geleceğe Dönüştürün",
     subtitle:
       "Güneş santrallerinden veri merkezlerine, sanayiden konutlara: Inspur BESS ve Thermaplus Isı Pompası ile temiz enerji dönüşümü.",
   },

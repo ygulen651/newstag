@@ -136,7 +136,18 @@ export default function SolutionDetail({ slug }: { slug: string }) {
                       </div>
                     )}
                     <div className="p-7">
-                      <segment.icon className="w-8 h-8 text-[#ea580c] mb-5" />
+                      {segment.thumbnail ? (
+                        <div className="relative mb-5 h-16 w-16 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+                          <Image
+                            src={segment.thumbnail}
+                            alt=""
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <segment.icon className="w-8 h-8 text-[#ea580c] mb-5" />
+                      )}
                       <h3 className="text-xl font-bold text-[#1e3a8a] mb-3">
                         {segment.title}
                       </h3>
@@ -238,7 +249,7 @@ export default function SolutionDetail({ slug }: { slug: string }) {
               <h2 className="text-3xl font-bold text-[#1e3a8a]">Diğer Çözüm Alanları</h2>
               <div className="h-px bg-gray-200 flex-1" />
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
               {otherSolutions.map((item) => (
                 <Link
                   key={item.slug}

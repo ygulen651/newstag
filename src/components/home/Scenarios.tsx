@@ -12,6 +12,13 @@ export default function Scenarios() {
   const [activeSlug, setActiveSlug] = useState(solutions[0].slug);
   const { t } = useLanguage();
   const active = solutions.find((s) => s.slug === activeSlug) ?? solutions[0];
+  const primaryBessProduct = active.products.find((product) =>
+    product.href.startsWith("/bess/"),
+  );
+  const primaryBessSlug = primaryBessProduct?.href.split("/").pop();
+  const productsHref = primaryBessSlug
+    ? `/bess#urun-${primaryBessSlug}`
+    : "/bess#urunler";
 
   return (
     <section className="relative h-[820px] w-full overflow-hidden bg-[#1e3a8a]">
@@ -70,7 +77,7 @@ export default function Scenarios() {
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/bess"
+                  href={productsHref}
                   className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 font-bold text-[#1e3a8a] transition-colors hover:bg-[#ea580c] hover:text-white"
                 >
                   <Package className="w-5 h-5" />
@@ -94,24 +101,20 @@ export default function Scenarios() {
       {/* Bottom Nav Bar */}
       <div className="absolute bottom-12 left-0 w-full z-20 px-6">
         <div className="container mx-auto">
-          <div className="bg-black/40 backdrop-blur-2xl rounded-[32px] p-2 flex flex-wrap items-center justify-between border border-white/10 shadow-2xl">
-            {solutions.map((s, index) => (
-              <React.Fragment key={s.slug}>
-                <button
-                  onClick={() => setActiveSlug(s.slug)}
-                  onMouseEnter={() => setActiveSlug(s.slug)}
-                  className={`flex-1 py-4 px-3 rounded-[24px] text-xs md:text-sm font-medium transition-all duration-500 whitespace-nowrap ${
-                    activeSlug === s.slug
-                      ? "bg-white text-[#1e3a8a] shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)] scale-100"
-                      : "text-white/50 hover:text-white hover:bg-white/5 scale-95"
-                  }`}
-                >
-                  {s.navTitle}
-                </button>
-                {index < solutions.length - 1 && (
-                  <div className="w-px h-6 bg-white/10 mx-1 hidden md:block" />
-                )}
-              </React.Fragment>
+          <div className="grid grid-cols-2 gap-1 rounded-[32px] border border-white/10 bg-black/40 p-2 shadow-2xl backdrop-blur-2xl md:grid-cols-4 xl:grid-cols-7">
+            {solutions.map((s) => (
+              <button
+                key={s.slug}
+                onClick={() => setActiveSlug(s.slug)}
+                onMouseEnter={() => setActiveSlug(s.slug)}
+                className={`rounded-[24px] px-3 py-4 text-xs font-medium transition-all duration-500 md:text-sm ${
+                  activeSlug === s.slug
+                    ? "scale-100 bg-white text-[#1e3a8a] shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)]"
+                    : "scale-95 text-white/50 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                {s.navTitle}
+              </button>
             ))}
           </div>
         </div>

@@ -27,7 +27,7 @@ export default function Hero() {
         >
           <motion.div style={{ y: videoY }} className="absolute inset-0 z-0">
             <video
-              src="/images/magnific_cinematic-renewable-energy-video-prompt-1520-seccr_veo3_1_1080p_16-9_24fps_22089.mp4"
+              src="/images/1500.mp4"
               className="h-full w-full object-cover"
               autoPlay
               loop
@@ -79,7 +79,7 @@ export default function Hero() {
             >
               <Link
                 href="/bess"
-                className="inline-flex items-center gap-3 rounded-full bg-[#ea580c] px-8 py-4 font-bold text-white shadow-2xl transition-colors hover:bg-[#c2410c]"
+                className="inline-flex items-center gap-3 rounded-full bg-[#1e3a8a] px-8 py-4 font-bold text-white shadow-2xl transition-colors hover:bg-[#172554]"
               >
                 Inspur BESS
                 <ArrowRight className="h-5 w-5" />
