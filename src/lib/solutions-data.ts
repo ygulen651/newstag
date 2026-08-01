@@ -310,7 +310,7 @@ export const solutions: Solution[] = [
     title: "Ticari İşletmeler",
     navTitle: "Ticari İşletmeler",
     icon: Building2,
-    image: "/images/commercial-mall.jpg",
+    image: "/images/OTEL.jpg",
     shortDesc:
       "AVM, otel, plaza ve perakende zincirleri için enerji maliyetini düşüren, arz güvenliği sağlayan çözümler.",
     intro: [
