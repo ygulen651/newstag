@@ -7,6 +7,28 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { bessProducts } from "@/lib/product-data";
 
+const solutionLinks: Record<string, { title: string; href: string }[]> = {
+  "pbt-48100": [{ title: "Sınırlı Şebeke Noktaları", href: "/cozumlerimiz/sinirli-sebeke" }],
+  "pbt-48150": [{ title: "Sınırlı Şebeke Noktaları", href: "/cozumlerimiz/sinirli-sebeke" }],
+  "ev-tipi-bess": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "tasinabilir-bess": [{ title: "Sınırlı Şebeke Noktaları", href: "/cozumlerimiz/sinirli-sebeke" }],
+  "sivi-sogutmali-kabinet-bess": [
+    { title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" },
+    { title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" },
+    { title: "Veri Merkezleri", href: "/cozumlerimiz/veri-merkezleri" },
+    { title: "Araç Şarj Noktaları", href: "/cozumlerimiz/arac-sarj-noktalari" },
+  ],
+  "flexcube-konteyner-bess": [
+    { title: "Sınırlı Şebeke Noktaları", href: "/cozumlerimiz/sinirli-sebeke" },
+    { title: "Araç Şarj Noktaları", href: "/cozumlerimiz/arac-sarj-noktalari" },
+  ],
+  "konteyner-tipi-bess": [
+    { title: "Enerji Santralleri", href: "/cozumlerimiz/enerji-santralleri" },
+    { title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" },
+    { title: "Veri Merkezleri", href: "/cozumlerimiz/veri-merkezleri" },
+  ],
+};
+
 export function generateStaticParams() {
   return bessProducts.map((product) => ({ slug: product.slug }));
 }
@@ -24,6 +46,7 @@ export default async function BessProductPage({
   }
 
   const otherProducts = bessProducts.filter((item) => item.slug !== slug).slice(0, 3);
+  const productSolutions = solutionLinks[product.slug] ?? [];
 
   return (
     <>
@@ -32,7 +55,7 @@ export default async function BessProductPage({
         <section className="py-24 bg-[#f8fafc]">
           <div className="container mx-auto px-6">
             <Link
-              href="/bess"
+              href="/bess#urunler"
               className="inline-flex items-center gap-2 text-[#1e3a8a] font-bold mb-10 hover:text-[#ea580c]"
             >
               <ArrowLeft className="w-5 h-5" /> BESS Ürünlerine Dön
@@ -89,6 +112,24 @@ export default async function BessProductPage({
 
         <section className="py-24 bg-white">
           <div className="container mx-auto px-6 max-w-4xl">
+            {productSolutions.length > 0 && (
+              <div className="mb-14 rounded-[30px] border border-blue-100 bg-[#f8fafc] p-8">
+                <h2 className="mb-5 text-2xl font-bold text-[#1e3a8a]">
+                  Ürünün Kullanıldığı Çözüm Alanları
+                </h2>
+                <div className="flex flex-wrap gap-3">
+                  {productSolutions.map((solution) => (
+                    <Link
+                      key={solution.href}
+                      href={solution.href}
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-bold text-[#1e3a8a] shadow-sm transition-colors hover:text-[#ea580c]"
+                    >
+                      {solution.title} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
             <h2 className="text-4xl font-bold text-[#1e3a8a] mb-8">Uygulama Notları</h2>
             <p className="text-lg text-gray-600 font-light leading-relaxed mb-6">
               Bu ürün ailesi; proje kapasitesi, bağlantı gücü, yedekleme süresi,
@@ -96,12 +137,20 @@ export default async function BessProductPage({
               konfigüre edilir. Kesin teknik değerler, proje keşfi ve seçilecek
               model ailesine göre katalog üzerinden netleştirilir.
             </p>
-            <Link
-              href="/iletisim"
-              className="inline-flex items-center gap-3 bg-[#1e3a8a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#152e73] transition-colors"
-            >
-              Teknik Görüşme Talep Et <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/iletisim"
+                className="inline-flex items-center gap-3 bg-[#1e3a8a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#152e73] transition-colors"
+              >
+                Teknik Görüşme Talep Et <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/iletisim"
+                className="inline-flex items-center gap-3 border border-blue-100 bg-white px-8 py-4 rounded-full font-bold text-[#1e3a8a] hover:border-[#ea580c] hover:text-[#ea580c] transition-colors"
+              >
+                Ürün Kataloğunu Talep Et <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
         </section>
 

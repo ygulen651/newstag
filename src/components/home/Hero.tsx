@@ -86,7 +86,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/isi-pompasi"
-                className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-bold text-white backdrop-blur-md transition-colors hover:bg-white hover:text-[#1e3a8a]"
+                className="inline-flex items-center gap-3 rounded-full bg-[#ea580c] px-8 py-4 font-bold text-white shadow-2xl transition-colors hover:bg-[#c2410c]"
               >
                 Thermaplus Isı Pompası
                 <ArrowRight className="h-5 w-5" />

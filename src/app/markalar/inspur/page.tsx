@@ -36,7 +36,7 @@ const strengths = [
     icon: Server,
     title: "Sunucu Teknolojisinde Liderlik",
     desc: "Yapay zeka sunucularında dünyanın 1 numarası, tüm sunucularda 2 numarası; 178 operatör ve endüstri müşterisine hizmet.",
-    image: "/images/11111.jpg",
+    image: null,
   },
   {
     icon: Cloud,
@@ -100,7 +100,7 @@ export default function InspurBrandPage() {
                   olan lider şirket.
                 </p>
                 <Link
-                  href="/bess"
+                  href="/bess#urunler"
                   className="inline-flex items-center gap-3 bg-[#ea580c] text-white px-8 py-4 rounded-full font-bold hover:bg-[#c2410c] transition-colors"
                 >
                   <BatteryCharging className="w-5 h-5" />
@@ -272,7 +272,7 @@ export default function InspurBrandPage() {
                   </div>
                 </div>
                 <Link
-                  href="/bess"
+                  href="/bess#urunler"
                   className="inline-flex items-center gap-3 bg-white text-[#1e3a8a] px-8 py-4 rounded-full font-bold hover:bg-[#f97316] hover:text-white transition-colors"
                 >
                   Ürünleri İncele <ArrowRight className="w-5 h-5" />
@@ -280,7 +280,7 @@ export default function InspurBrandPage() {
               </div>
               <div className="relative aspect-[4/3] rounded-[40px] overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/e9551124-2722-4454-bf42-e6d7ff187aec.png"
+                  src="/images/11111.jpg"
                   alt="Inspur BESS saha kurulumu"
                   fill
                   className="object-cover"

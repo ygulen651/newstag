@@ -111,7 +111,7 @@ export default function ThermaplusBrandPage() {
                   konforu sağlıyor.
                 </p>
                 <Link
-                  href="/isi-pompasi"
+                  href="/isi-pompasi#urunler"
                   className="inline-flex items-center gap-3 bg-[#ea580c] text-white px-8 py-4 rounded-full font-bold hover:bg-[#c2410c] transition-colors"
                 >
                   <ThermometerSun className="w-5 h-5" />
@@ -127,7 +127,7 @@ export default function ThermaplusBrandPage() {
                 className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/images/heat-pump.png"
+                  src="/images/heat-pump-branded.png"
                   alt="Thermaplus ısı pompası kurulumu"
                   fill
                   className="object-cover"
@@ -241,7 +241,7 @@ export default function ThermaplusBrandPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/isi-pompasi"
+                href="/isi-pompasi#urunler"
                 className="inline-flex items-center gap-3 bg-white text-[#1e3a8a] px-10 py-5 rounded-full font-bold hover:bg-[#f97316] hover:text-white transition-colors"
               >
                 Ürünleri İncele <ArrowRight className="w-5 h-5" />

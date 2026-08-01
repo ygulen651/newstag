@@ -12,6 +12,7 @@ import {
   Building2,
   Cable,
   Cpu,
+  Factory,
   Gauge,
   Globe2,
   LineChart,
@@ -19,15 +20,18 @@ import {
   Power,
   ShieldCheck,
   Sun,
+  Wind,
   Zap,
 } from "lucide-react";
 import { bessProducts } from "@/lib/product-data";
 
-const heroStats = [
-  { value: "1 GWh", label: "Yaklaşan kurulum deneyimi" },
-  { value: "400 MWh", label: "Tek projede kurulum" },
-  { value: "Hızlı", label: "Milisaniyeler içinde devreye girme" },
-];
+const productCardImages: Record<string, string> = {
+  "ev-tipi-bess": "/images/residential-solutions.png",
+  "tasinabilir-bess": "/images/limited-grid-event.png",
+  "sivi-sogutmali-kabinet-bess": "/images/industry-automotive.jpg",
+  "flexcube-konteyner-bess": "/images/limited-grid-quarry.png",
+  "konteyner-tipi-bess": "/images/12121.png",
+};
 
 const flowSteps = [
   {
@@ -108,6 +112,16 @@ const benefits = [
     desc: "Milisaniyeler içinde tepkiyle primer ve sekonder frekans dengeleme hizmetlerinden ilave gelir kazanın.",
     icon: Power,
   },
+  {
+    title: "Santraller İçin Kritik Yatırım",
+    desc: "GES ve RES üretimindeki dengesizliği düzenleyin, şebeke kısıtlarını yönetin ve yan hizmet gelirlerini çeşitlendirin.",
+    icon: Building2,
+  },
+  {
+    title: "Off-grid Çalışabilme",
+    desc: "Şebekenin bulunmadığı noktalarda tek başına veya GES ile birlikte güvenilir ve ölçeklenebilir enerji sağlayın.",
+    icon: Globe2,
+  },
 ];
 
 const inspurStats = [
@@ -159,6 +173,127 @@ const investSteps = [
   },
 ];
 
+function EnergyConnector({ color, label }: { color: "green" | "blue"; label?: string }) {
+  const lineColor = color === "green" ? "bg-emerald-400/35" : "bg-sky-400/35";
+  const pulseColor = color === "green" ? "bg-emerald-300" : "bg-sky-300";
+
+  return (
+    <div className="relative hidden min-w-6 flex-1 pt-5 lg:block">
+      {label && (
+        <span className="absolute inset-x-0 top-0 text-center text-[10px] font-bold uppercase tracking-widest text-white/45">
+          {label}
+        </span>
+      )}
+      <div className={`relative h-1 overflow-hidden rounded-full ${lineColor}`}>
+        <motion.span
+          animate={{ left: ["-12%", "105%"] }}
+          transition={{ repeat: Infinity, duration: 1.7, ease: "linear" }}
+          className={`absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full ${pulseColor} shadow-[0_0_18px_currentColor]`}
+        />
+        <motion.span
+          animate={{ left: ["-32%", "105%"] }}
+          transition={{ repeat: Infinity, duration: 1.7, delay: 0.55, ease: "linear" }}
+          className={`absolute top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r-2 border-t-2 ${
+            color === "green" ? "border-emerald-200" : "border-sky-200"
+          }`}
+        />
+      </div>
+    </div>
+  );
+}
+
+function EnergyNode({
+  icon: Icon,
+  title,
+  subtitle,
+  color,
+  details = [],
+  battery = false,
+}: {
+  icon: React.ElementType;
+  title: string;
+  subtitle: string;
+  color: "green" | "blue";
+  details?: string[];
+  battery?: boolean;
+}) {
+  const accent = color === "green" ? "text-emerald-300" : "text-sky-300";
+  const glow =
+    color === "green"
+      ? "shadow-[0_0_35px_rgba(52,211,153,0.08)]"
+      : "shadow-[0_0_35px_rgba(56,189,248,0.08)]";
+
+  return (
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02 }}
+      className={`relative w-full rounded-2xl border border-white/10 bg-[#0d1c36] p-5 lg:w-40 lg:shrink-0 ${glow}`}
+    >
+      <motion.div
+        animate={{ opacity: [0.65, 1, 0.65] }}
+        transition={{ repeat: Infinity, duration: 2.2 }}
+        className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 ${accent}`}
+      >
+        <Icon className="h-6 w-6" />
+      </motion.div>
+      <h3 className="mb-2 text-base font-bold text-white">{title}</h3>
+      <p className="text-xs leading-relaxed text-white/55">{subtitle}</p>
+      {battery && (
+        <div className="mt-4 grid grid-cols-5 gap-1 rounded-lg border border-white/10 bg-black/20 p-2">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <motion.span
+              key={index}
+              animate={{ opacity: [0.35, 1, 0.35] }}
+              transition={{ repeat: Infinity, duration: 1.8, delay: index * 0.08 }}
+              className={`h-4 rounded-sm ${color === "green" ? "bg-emerald-400" : "bg-sky-400"}`}
+            />
+          ))}
+        </div>
+      )}
+      {details.length > 0 && (
+        <ul className="mt-4 space-y-1.5 border-t border-white/10 pt-3">
+          {details.map((detail) => (
+            <li key={detail} className="flex items-center gap-2 text-[10px] text-white/50">
+              <span className={`h-1.5 w-1.5 rounded-full ${color === "green" ? "bg-emerald-300" : "bg-sky-300"}`} />
+              {detail}
+            </li>
+          ))}
+        </ul>
+      )}
+    </motion.div>
+  );
+}
+
+function SourceStack({ color }: { color: "green" | "blue" }) {
+  const items =
+    color === "green"
+      ? [
+          { icon: Wind, label: "Rüzgâr" },
+          { icon: Sun, label: "Güneş" },
+          { icon: Zap, label: "Şebeke" },
+        ]
+      : [
+          { icon: Zap, label: "Şebeke" },
+          { icon: Factory, label: "Fabrika" },
+          { icon: Building2, label: "Ticari Bina" },
+        ];
+  const accent = color === "green" ? "text-emerald-300" : "text-sky-300";
+
+  return (
+    <div className="flex w-full flex-col gap-2 lg:w-36 lg:shrink-0">
+      {items.map(({ icon: Icon, label }, index) => (
+        <motion.div
+          key={label}
+          animate={{ borderColor: ["rgba(255,255,255,.1)", "rgba(255,255,255,.3)", "rgba(255,255,255,.1)"] }}
+          transition={{ repeat: Infinity, duration: 2.5, delay: index * 0.25 }}
+          className="flex items-center gap-3 rounded-xl border bg-[#0d1c36] px-4 py-3 text-sm font-bold text-white"
+        >
+          <Icon className={`h-5 w-5 ${accent}`} /> {label}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 export default function BessPage() {
   return (
     <>
@@ -187,16 +322,19 @@ export default function BessPage() {
                   sağlayarak maliyet, süreklilik ve güç kalitesini aynı anda
                   yönetir.
                 </p>
-                <div className="grid grid-cols-3 gap-4 max-w-xl">
-                  {heroStats.map((item) => (
-                    <div
-                      key={item.label}
-                      className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-center"
-                    >
-                      <p className="text-2xl font-bold text-[#ea580c] mb-1">{item.value}</p>
-                      <p className="text-xs font-medium text-gray-500 leading-snug">{item.label}</p>
-                    </div>
-                  ))}
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    href="#urunler"
+                    className="inline-flex items-center gap-3 rounded-full bg-[#1e3a8a] px-8 py-4 font-bold text-white transition-colors hover:bg-[#152e73]"
+                  >
+                    Ürünleri İncele <ArrowRight className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="/markalar/inspur"
+                    className="inline-flex items-center gap-3 rounded-full border border-blue-100 bg-white px-8 py-4 font-bold text-[#1e3a8a] transition-colors hover:border-[#ea580c] hover:text-[#ea580c]"
+                  >
+                    Markayı Tanı <ArrowRight className="h-5 w-5" />
+                  </Link>
                 </div>
               </motion.div>
 
@@ -207,10 +345,10 @@ export default function BessPage() {
                 className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl bg-white"
               >
                 <Image
-                  src="/images/products/bess-konteyner-xl.png"
+                  src="/images/12121.png"
                   alt="Inspur konteyner tipi BESS"
                   fill
-                  className="object-contain p-8"
+                  className="object-cover"
                   priority
                 />
               </motion.div>
@@ -241,7 +379,104 @@ export default function BessPage() {
               </p>
             </div>
 
-            <div className="relative mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8 }}
+              className="relative mx-auto max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#020916] p-5 shadow-2xl shadow-black/40 md:p-8"
+            >
+              <div className="absolute inset-0 grid-bg opacity-15" />
+              <div className="relative space-y-5">
+                <div className="rounded-[24px] border border-emerald-400/15 bg-emerald-400/[0.025] p-5 md:p-7">
+                  <div className="mb-7 flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-xl font-bold text-emerald-300">ŞARJ DÖNGÜSÜ</h3>
+                      <p className="mt-1 text-sm text-white/50">
+                        Kaynaklardan gelen enerji EMS kararıyla bataryaya depolanır.
+                      </p>
+                    </div>
+                    <motion.div
+                      animate={{ opacity: [0.55, 1, 0.55] }}
+                      transition={{ repeat: Infinity, duration: 1.8 }}
+                      className="flex items-center gap-3 rounded-xl border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-xs font-bold text-emerald-300"
+                    >
+                      ŞARJ EDİLİYOR
+                      <BatteryCharging className="h-5 w-5" />
+                    </motion.div>
+                  </div>
+                  <div className="overflow-hidden pb-2">
+                    <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 lg:flex lg:gap-2">
+                      <SourceStack color="green" />
+                      <EnergyConnector color="green" label="AC" />
+                      <EnergyNode
+                        icon={Cpu}
+                        title="EMS"
+                        subtitle="Enerji Yönetim Sistemi"
+                        details={["Talep tahmini", "Piyasa verisi", "Hava tahmini", "Sistem durumu"]}
+                        color="green"
+                      />
+                      <EnergyConnector color="green" label="EMS Kararı" />
+                      <EnergyNode icon={Cable} title="PCS" subtitle="Güç dönüştürücü; AC enerjiyi DC enerjiye çevirir." details={["AC → DC", "Güç ve frekans kontrolü"]} color="green" />
+                      <EnergyConnector color="green" label="DC" />
+                      <EnergyNode icon={BatteryCharging} title="Batarya Sistemi" subtitle="Enerjiyi güvenli LFP hücrelerde depolar." details={["Modüler hücre mimarisi", "Ölçeklenebilir kapasite"]} battery color="green" />
+                      <EnergyConnector color="green" label="İzleme" />
+                      <EnergyNode icon={ShieldCheck} title="BMS" subtitle="Batarya Yönetim Sistemi" details={["Voltaj ve akım izleme", "Sıcaklık kontrolü", "SOC / SOH", "Koruma yönetimi"]} color="green" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-[24px] border border-sky-400/15 bg-sky-400/[0.025] p-5 md:p-7">
+                  <div className="mb-7 flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-xl font-bold text-sky-300">DEŞARJ DÖNGÜSÜ</h3>
+                      <p className="mt-1 text-sm text-white/50">
+                        Depolanan enerji EMS kontrolünde ihtiyaç noktalarına aktarılır.
+                      </p>
+                    </div>
+                    <motion.div
+                      animate={{ opacity: [0.55, 1, 0.55] }}
+                      transition={{ repeat: Infinity, duration: 1.8 }}
+                      className="flex items-center gap-3 rounded-xl border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-xs font-bold text-sky-300"
+                    >
+                      DEŞARJ EDİLİYOR
+                      <BatteryCharging className="h-5 w-5" />
+                    </motion.div>
+                  </div>
+                  <div className="overflow-hidden pb-2">
+                    <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 lg:flex lg:gap-2">
+                      <EnergyNode icon={ShieldCheck} title="BMS" subtitle="Batarya Yönetim Sistemi" details={["Voltaj ve akım izleme", "Sıcaklık kontrolü", "SOC / SOH", "Çok katmanlı koruma"]} color="blue" />
+                      <EnergyConnector color="blue" label="İzin" />
+                      <EnergyNode icon={BatteryCharging} title="Batarya Sistemi" subtitle="Depolanan DC enerjiyi güvenli biçimde sisteme verir." details={["LFP hücre teknolojisi", "Uzun çevrim ömrü"]} battery color="blue" />
+                      <EnergyConnector color="blue" label="DC" />
+                      <EnergyNode icon={Cable} title="PCS" subtitle="Güç dönüştürücü; DC enerjiyi AC enerjiye çevirir." details={["DC → AC", "Güç kalitesi yönetimi"]} color="blue" />
+                      <EnergyConnector color="blue" label="EMS Kararı" />
+                      <EnergyNode icon={Cpu} title="EMS" subtitle="Enerjiyi doğru zamanda doğru tüketim noktasına yönlendirir." details={["Talep optimizasyonu", "Anlık sistem izleme"]} color="blue" />
+                      <EnergyConnector color="blue" label="AC" />
+                      <SourceStack color="blue" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
+                  {[
+                    ["Çift Yönlü Enerji Akışı", "Esnek şarj / deşarj"],
+                    ["Maksimum Verimlilik", "Yüksek verimli PCS"],
+                    ["Akıllı Kontrol", "EMS ve BMS entegrasyonu"],
+                    ["Güvenlik", "Çok katmanlı koruma"],
+                    ["Ölçeklenebilirlik", "Modüler batarya mimarisi"],
+                  ].map(([title, desc]) => (
+                      <div key={title} className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 text-center">
+                        <p className="text-xs font-bold text-white/75">{title}</p>
+                        <p className="mt-1 text-[10px] text-white/35">{desc}</p>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="relative mx-auto hidden max-w-7xl">
               <svg
                 viewBox="0 0 1200 560"
                 className="pointer-events-none absolute inset-x-0 top-2 z-0 hidden h-[560px] w-full overflow-visible lg:block"
@@ -514,14 +749,10 @@ export default function BessPage() {
                 >
                   <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-7 bg-gray-50">
                     <Image
-                      src={product.image}
+                      src={productCardImages[product.slug] ?? product.image}
                       alt={product.title}
                       fill
-                      className={`${
-                        product.imageFit === "contain"
-                          ? "object-contain p-6"
-                          : "object-cover"
-                      } group-hover:scale-105 transition-transform duration-500`}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <span className="text-[#ea580c] text-xs font-bold uppercase tracking-widest">

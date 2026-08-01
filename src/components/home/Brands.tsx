@@ -15,7 +15,7 @@ const brands = [
     image: "/images/products/bess-konteyner.png",
     logo: "/images/image1.png",
     brandHref: "/markalar/inspur",
-    productsHref: "/bess",
+    productsHref: "/bess#urunler",
     tags: ["Global Teknoloji Devi", "1 GWh Kurulum Deneyimi", "120+ Ülke"],
   },
   {
@@ -23,10 +23,10 @@ const brands = [
     role: "Isı Pompası",
     description:
       "Newstag'ın kendi markası Thermaplus; Türkiye'de üretilen ısı pompası teknolojisini yerli parça, yerli mühendislik ve güçlü servis ağıyla birleştirerek konutlardan endüstriyel tesislere kadar her ölçekte verimli ısıtma, soğutma ve sıcak su konforu sunuyor.",
-    image: "/images/heat-pump.png",
+    image: "/images/heat-pump-branded.png",
     logo: "/images/Adsız tasarım.png",
     brandHref: "/markalar/thermaplus",
-    productsHref: "/isi-pompasi",
+    productsHref: "/isi-pompasi#urunler",
     tags: ["Türkiye'de Üretim", "A+++ Verimlilik", "Yerli Mühendislik"],
   },
 ];

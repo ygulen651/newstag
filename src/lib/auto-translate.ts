@@ -54,6 +54,7 @@ const exactTranslations: Record<string, string> = {
   "Enerji Dönüşümünüzün": "Your Energy Transformation",
   "Çözüm Ortağı": "Solution Partner",
   "Keşfetmek İçin Kaydırın": "Scroll to Explore",
+  "Kim Olduğumuzu Keşfedin": "Discover Who We Are",
   "65 Yıllık Miras, Yeni Nesil Enerji": "65 Years of Heritage, Next-Generation Energy",
   "65 Yıllık Miras,": "65 Years of Heritage,",
   "Yeni Nesil Enerji": "Next-Generation Energy",

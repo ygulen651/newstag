@@ -53,8 +53,8 @@ const serviceScope = [
 const coverageStats = [
   { value: "81", label: "İlde servis koordinasyonu" },
   { value: "7/24", label: "Kritik arıza kaydı takibi" },
-  { value: "48s", label: "İçinde saha yönlendirme hedefi" },
-  { value: "%100", label: "Yerli servis organizasyonu" },
+  { value: "Tek Merkez", label: "Uçtan uca servis koordinasyonu" },
+  { value: "6 Aşama", label: "Keşiften işletme desteğine" },
 ];
 
 export default function ServicePage() {
@@ -109,7 +109,7 @@ export default function ServicePage() {
                 className="relative aspect-[4/3] rounded-[40px] overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/images/business-scenario.png"
+                  src="/images/service-technician.png"
                   alt="Newstag teknik servis ekibi sahada"
                   fill
                   className="object-cover"

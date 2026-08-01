@@ -7,6 +7,24 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { heatPumpProducts } from "@/lib/product-data";
 
+const solutionLinks: Record<string, { title: string; href: string }[]> = {
+  "thermaplus-up-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "thermaplus-fuzzy-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "thermaplus-bcp": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "thermaplus-all": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "thermaplus-silent-pool-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "thermaplus-commercial-pool": [{ title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" }],
+  "thermaplus-plus-serisi": [{ title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" }],
+  "thermaplus-commercial-sicak-su": [
+    { title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" },
+    { title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" },
+  ],
+  "thermaplus-commercial-duo": [
+    { title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" },
+    { title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" },
+  ],
+};
+
 export function generateStaticParams() {
   return heatPumpProducts.map((product) => ({ slug: product.slug }));
 }
@@ -26,6 +44,7 @@ export default async function HeatPumpProductPage({
   const related = heatPumpProducts
     .filter((item) => item.category === product.category && item.slug !== slug)
     .slice(0, 3);
+  const productSolutions = solutionLinks[product.slug] ?? [];
 
   return (
     <>
@@ -74,6 +93,24 @@ export default async function HeatPumpProductPage({
 
         <section className="py-24 bg-white">
           <div className="container mx-auto px-6 max-w-4xl">
+            {productSolutions.length > 0 && (
+              <div className="mb-14 rounded-[30px] border border-blue-100 bg-[#f8fafc] p-8">
+                <h2 className="mb-5 text-2xl font-bold text-[#1e3a8a]">
+                  Ürünün Kullanıldığı Çözüm Alanları
+                </h2>
+                <div className="flex flex-wrap gap-3">
+                  {productSolutions.map((solution) => (
+                    <Link
+                      key={solution.href}
+                      href={solution.href}
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-bold text-[#1e3a8a] shadow-sm transition-colors hover:text-[#ea580c]"
+                    >
+                      {solution.title} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
             <h2 className="text-4xl font-bold text-[#1e3a8a] mb-8">Doğru Model Seçimi</h2>
             <p className="text-lg text-gray-600 font-light leading-relaxed mb-6">
               Isı pompası kapasitesi; bina büyüklüğü, yalıtım durumu, bölge
@@ -81,12 +118,20 @@ export default async function HeatPumpProductPage({
               ekibimiz ücretsiz keşif ile ihtiyacınıza en uygun Thermaplus
               modelini önerir.
             </p>
-            <Link
-              href="/iletisim"
-              className="inline-flex items-center gap-3 bg-[#1e3a8a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#152e73] transition-colors"
-            >
-              Ücretsiz Keşif Talep Et <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/iletisim"
+                className="inline-flex items-center gap-3 bg-[#1e3a8a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#152e73] transition-colors"
+              >
+                Ücretsiz Keşif Talep Et <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/iletisim"
+                className="inline-flex items-center gap-3 border border-blue-100 bg-white px-8 py-4 rounded-full font-bold text-[#1e3a8a] hover:border-[#ea580c] hover:text-[#ea580c] transition-colors"
+              >
+                Ürün Kataloğunu Talep Et <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
         </section>
 

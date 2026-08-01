@@ -100,7 +100,7 @@ export default function StackedVisuals() {
       title: t.banners.heatPumpTitle,
       cta: t.common.exploreProducts,
       href: "/isi-pompasi",
-      image: "/images/heat-pump.png",
+      image: "/images/heat-pump-branded.png",
       imagePosition: "object-center",
     },
   ];

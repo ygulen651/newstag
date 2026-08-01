@@ -137,7 +137,7 @@ export default function SolutionDetail({ slug }: { slug: string }) {
                     )}
                     <div className="p-7">
                       {segment.thumbnail ? (
-                        <div className="relative mb-5 h-16 w-16 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+                        <div className="relative mb-6 h-36 w-full overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
                           <Image
                             src={segment.thumbnail}
                             alt=""

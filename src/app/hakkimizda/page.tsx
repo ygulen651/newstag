@@ -72,7 +72,7 @@ export default function AboutPage() {
         <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#1e3a8a]">
           <motion.div style={{ scale: heroScale }} className="absolute inset-0 z-0 opacity-40">
             <Image
-              src="/images/hakkimizda-hero.png"
+              src="/images/about-renewable-campus.png"
               alt="Newstag Enerji"
               fill
               className="object-cover"
@@ -169,8 +169,8 @@ export default function AboutPage() {
                 className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/images/e9551124-2722-4454-bf42-e6d7ff187aec.png"
-                  alt="Inspur BESS saha kurulumu"
+                  src="/images/industry-automotive.jpg"
+                  alt="Saray Holding endüstriyel üretim deneyimi"
                   fill
                   className="object-cover"
                 />

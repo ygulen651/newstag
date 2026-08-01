@@ -16,7 +16,7 @@ const brands = [
     logo: "/images/image1.png",
     image: "/images/products/bess-konteyner.png",
     brandLink: "/markalar/inspur",
-    productsLink: "/bess",
+    productsLink: "/bess#urunler",
     stats: [
       { value: "$31B+", label: "Yıllık Gelir" },
       { value: "Top 3", label: "Global Sunucu Üreticisi" },
@@ -28,9 +28,9 @@ const brands = [
     tagline: "Çevreci, Verimli, Ekonomik",
     desc: "Newstag'ın kendi tescilli markası Thermaplus; Türkiye'de üretilen ısı pompası teknolojisini yerli parça, yerli mühendislik ve güçlü servis ağıyla birleştiriyor. Konut, havuz ve endüstriyel serileriyle 6 kW'tan 1.066 kW kaskad sistemlere uzanan geniş ürün gamı sunuyor.",
     logo: "/images/Adsız tasarım.png",
-    image: "/images/heat-pump.png",
+    image: "/images/heat-pump-branded.png",
     brandLink: "/markalar/thermaplus",
-    productsLink: "/isi-pompasi",
+    productsLink: "/isi-pompasi#urunler",
     stats: [
       { value: "A+++", label: "Enerji Verimliliği" },
       { value: "3-5", label: "COP Değeri" },

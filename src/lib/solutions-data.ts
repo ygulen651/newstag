@@ -96,6 +96,22 @@ const bessHomeProduct: SolutionProduct = {
   image: "/images/products/bess-ev-tipi.png",
 };
 
+const pbt48100Product: SolutionProduct = {
+  eyebrow: "Telekom Güç Çözümleri",
+  title: "PBT-48100 Power Unit",
+  desc: "Sınırlı şebeke ve telekom uygulamalarında kesintisiz güç desteği sunan kompakt enerji ünitesi.",
+  href: "/bess/pbt-48100",
+  image: "/images/789f8331-8ef5-44dd-9fee-538f29300149.jpg",
+};
+
+const pbt48150Product: SolutionProduct = {
+  eyebrow: "Telekom Güç Çözümleri",
+  title: "PBT-48150 Power Unit",
+  desc: "Telekom ve saha operasyonları için yüksek kapasiteli, taşınabilir ve dayanıklı enerji ünitesi.",
+  href: "/bess/pbt-48150",
+  image: "/images/49344c8f-d5a1-412a-a165-77edc008b086.jpg",
+};
+
 const heatPumpIndustrialProduct: SolutionProduct = {
   eyebrow: "Isı Pompası",
   title: "Thermaplus Endüstriyel Seriler",
@@ -237,7 +253,7 @@ export const solutions: Solution[] = [
     title: "Sanayi Tesisleri",
     navTitle: "Sanayi Tesisleri",
     icon: Factory,
-    image: "/images/e9551124-2722-4454-bf42-e6d7ff187aec.png",
+    image: "/images/industry-automotive.jpg",
     shortDesc:
       "Üretim sürekliliği, pik yük yönetimi ve proses ısısı için BESS ve endüstriyel ısı pompası entegrasyonu.",
     intro: [
@@ -406,7 +422,7 @@ export const solutions: Solution[] = [
     title: "Veri Merkezleri",
     navTitle: "Veri Merkezleri",
     icon: Server,
-    image: "/images/business-scenario.png",
+    image: "/images/data-center-real.png",
     shortDesc:
       "Milisaniyeler içinde devreye giren depolama ve hassas iklimlendirme ile 7/24 kesintisiz operasyon.",
     intro: [
@@ -451,6 +467,11 @@ export const solutions: Solution[] = [
         icon: Wind,
         title: "Hassas İklimlendirme",
         desc: "7/24 steril ve çift yönlü havalandırma ihtiyacını verimli şekilde karşılama.",
+      },
+      {
+        icon: Factory,
+        title: "Atık Isı Değerlendirme",
+        desc: "Sunucu ekipmanından açığa çıkan atık ısıyı uygun projelerde yeniden kullanarak toplam enerji verimliliğini artırma.",
       },
       ...commonHeatPumpBenefits,
     ],
@@ -520,12 +541,6 @@ export const solutions: Solution[] = [
     segmentsTitle: "Sahada kanıtlanmış kullanım senaryoları",
     segments: [
       {
-        icon: Zap,
-        title: "Şarj Ağı Noktaları",
-        desc: "Yüksek güçlü araç şarjı için yeterli şebeke kapasitesi olmayan lokasyonlarda, batarya desteğiyle minimum altyapı yatırımıyla hızlı şarj hizmeti.",
-        image: "/images/limited-grid-ev-charging.png",
-      },
-      {
         icon: Factory,
         title: "Maden ve Taş Ocakları",
         desc: "Şebekeye erişimin zor olduğu sahalarda GES entegre veya taşınabilir BESS ile jeneratöre kıyasla ekonomik ve çevreci güç.",
@@ -536,6 +551,12 @@ export const solutions: Solution[] = [
         title: "Konserler ve Kamp Alanları",
         desc: "Şebekeye uzak etkinlik alanlarında taşınabilir depolama ile sessiz, kesintisiz ve temiz güç.",
         image: "/images/limited-grid-event.png",
+      },
+      {
+        icon: Server,
+        title: "Telekom Sistemleri",
+        desc: "Şebekenin bulunmadığı veya kesintili olduğu baz istasyonu ve telekom sahalarında haberleşme altyapısını kesintisiz besleyen güvenilir enerji depolama.",
+        image: "/images/data-center-real.png",
       },
     ],
     whyBess: [
@@ -570,7 +591,10 @@ export const solutions: Solution[] = [
         desc: "Şebekeye uzak sahalarda taşınabilir depolama ile operasyonu mümkün kılma.",
       },
     ],
-    products: [bessFlexCubeProduct, bessContainerProduct],
+    products: [
+      pbt48100Product,
+      pbt48150Product,
+    ],
   },
 ];
 

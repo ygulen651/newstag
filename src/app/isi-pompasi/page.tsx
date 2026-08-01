@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
@@ -25,7 +25,7 @@ import { heatPumpCategories, heatPumpProducts } from "@/lib/product-data";
 
 const copStats = [
   { value: "3-5", label: "COP: 1 birim elektrikten 3-5 birim ısı" },
-  { value: "%75", label: "Yıllık enerji giderinde tasarrufa varan potansiyel" },
+  { value: "%75", label: "Yıllık enerji giderinde tasarruf potansiyeli" },
   { value: "A+++", label: "ERP enerji verimliliği sınıfı" },
   { value: "80 °C", label: "Endüstriyel serilerde çıkış suyu sıcaklığı" },
 ];
@@ -69,17 +69,158 @@ const sources = [
     title: "Hava Kaynaklı",
     desc: "En yaygın çözüm; kurulumu basit, yatırım maliyeti düşük.",
   },
-  {
-    icon: Leaf,
-    title: "Toprak Kaynaklı",
-    desc: "Yüksek verim; büyük ölçekli projeler için ideal.",
-  },
-  {
-    icon: Droplets,
-    title: "Su Kaynaklı",
-    desc: "Göl ve nehir kenarı tesisler için optimum performans.",
-  },
 ];
+
+type HeatMode = "heating" | "cooling" | "water";
+
+function HeatPumpCycleDiagram() {
+  const [mode, setMode] = useState<HeatMode>("heating");
+  const [outsideTemp, setOutsideTemp] = useState(7);
+  const isCooling = mode === "cooling";
+  const isWater = mode === "water";
+  const targetTemp = isCooling ? 18 : isWater ? 55 : 22;
+  const cop = isCooling ? "3.8" : isWater ? "3.1" : "3.3";
+  const hotColor = isCooling ? "#38bdf8" : "#f97316";
+
+  const modes: { id: HeatMode; label: string; icon: React.ElementType }[] = [
+    { id: "heating", label: "Isıtma", icon: ThermometerSun },
+    { id: "cooling", label: "Soğutma", icon: Wind },
+    { id: "water", label: "Kullanım Suyu", icon: Droplets },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      className="mx-auto max-w-7xl rounded-[32px] border border-white/10 bg-[#0b1222] p-5 shadow-2xl md:p-8"
+    >
+      <div className="mb-6 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h3 className="text-xl font-bold">Soğutucu Akışkan Döngüsü</h3>
+          <p className="mt-1 text-sm text-white/40">Modu değiştirerek enerji akış yönünü inceleyin</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {modes.map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setMode(id)}
+              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold transition-colors ${
+                mode === id
+                  ? "border-[#f97316] bg-[#f97316]/15 text-[#f97316]"
+                  : "border-white/10 bg-white/[0.03] text-white/45 hover:text-white"
+              }`}
+            >
+              <Icon className="h-4 w-4" /> {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {[
+          [cop, "COP"],
+          [`${outsideTemp}°C`, "Dış Sıcaklık"],
+          [`${targetTemp}°C`, isWater ? "Su Sıcaklığı" : "İç Ortam"],
+        ].map(([value, label], index) => (
+          <div key={label} className="rounded-xl border border-white/10 bg-white/[0.035] p-4 text-center">
+            <p className={`text-2xl font-bold ${index === 1 ? "text-sky-400" : index === 2 ? "text-[#f97316]" : "text-amber-400"}`}>{value}</p>
+            <p className="mt-1 text-[10px] uppercase tracking-widest text-white/30">{label}</p>
+          </div>
+        ))}
+      </div>
+
+      <label className="mb-5 flex items-center gap-4 text-xs text-white/45">
+        Dış sıcaklık
+        <input
+          type="range"
+          min="-25"
+          max="35"
+          value={outsideTemp}
+          onChange={(event) => setOutsideTemp(Number(event.target.value))}
+          className="h-1 flex-1 accent-sky-400"
+        />
+        <span className="w-12 text-right text-sky-300">{outsideTemp}°C</span>
+      </label>
+
+      <div className="mb-5 rounded-xl border border-white/10 bg-white/[0.035] p-4 text-sm leading-relaxed text-white/55">
+        <strong className="text-white">{isCooling ? "Soğutma" : isWater ? "Kullanım suyu" : "Isıtma"} döngüsü:</strong>{" "}
+        {isCooling
+          ? "İç üniteden alınan ısı soğutucu akışkana aktarılır, kompresör ve dış ünite üzerinden dış ortama bırakılır."
+          : isWater
+            ? "Dış havadan alınan düşük sıcaklıklı enerji kompresörle yükseltilir ve kullanım suyuna aktarılır."
+            : "Dış evaporatör havadan ısı çeker, kompresör akışkan sıcaklığını yükseltir ve iç kondenser ısıyı ortama aktarır."}
+      </div>
+
+      <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-[#060c17] p-5 md:p-7">
+        <svg viewBox="0 0 1000 560" className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" aria-hidden="true">
+          <path d="M205 165 H420 Q500 165 500 255" fill="none" stroke="#38bdf8" strokeWidth="5" opacity=".45" />
+          <path d="M500 255 Q500 165 580 165 H795" fill="none" stroke={hotColor} strokeWidth="5" opacity=".55" />
+          <path d="M795 395 V485 H205 V395" fill="none" stroke="#a78bfa" strokeWidth="5" opacity=".45" />
+          {[0, 1, 2, 3].map((item) => (
+            <motion.circle
+              key={item}
+              r="7"
+              fill={item < 2 ? "#38bdf8" : hotColor}
+              animate={{ offsetDistance: ["0%", "100%"] }}
+              transition={{ repeat: Infinity, duration: 4, delay: item * 0.75, ease: "linear" }}
+              style={{ offsetPath: "path('M205 165 H420 Q500 165 500 255 Q500 165 580 165 H795 V395 V485 H205 V395')" }}
+            />
+          ))}
+        </svg>
+
+        <div className="relative z-10 grid grid-cols-1 gap-5 lg:grid-cols-[1fr_220px_1fr] lg:grid-rows-[1fr_auto] lg:items-center lg:gap-10">
+          <div className="rounded-[24px] border border-sky-400/30 bg-sky-400/[0.07] p-6 lg:row-start-1">
+            <p className="text-xs font-bold uppercase tracking-widest text-sky-300">Dış Ortam</p>
+            <h4 className="mt-2 text-xl font-bold">Dış Ünite · Evaporatör</h4>
+            <div className="my-5 space-y-2">
+              {[1, 2, 3].map((line) => <div key={line} className="h-2 rounded-full border border-sky-400/30" />)}
+            </div>
+            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 3, ease: "linear" }} className="mx-auto w-fit">
+              <Wind className="h-12 w-12 text-sky-400" />
+            </motion.div>
+            <p className="mt-4 text-center text-sm text-white/45">Havadan ısı alır · {outsideTemp}°C</p>
+          </div>
+
+          <div className="flex flex-col items-center lg:row-start-1">
+            <motion.div
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ repeat: Infinity, duration: 1.8 }}
+              className="flex h-32 w-32 flex-col items-center justify-center rounded-full border-2 border-amber-400/50 bg-amber-400/10 text-center shadow-[0_0_40px_rgba(251,191,36,.12)]"
+            >
+              <Settings className="mb-2 h-10 w-10 animate-spin text-amber-400 [animation-duration:5s]" />
+              <span className="text-sm font-bold text-amber-300">Kompresör</span>
+              <span className="text-[10px] text-white/35">Basınç ↑ · Sıcaklık ↑</span>
+            </motion.div>
+          </div>
+
+          <div className="rounded-[24px] border border-orange-400/30 bg-orange-400/[0.07] p-6 lg:row-start-1">
+            <p className="text-xs font-bold uppercase tracking-widest text-orange-300">{isWater ? "Su Devresi" : "İç Ortam"}</p>
+            <h4 className="mt-2 text-xl font-bold">{isWater ? "Boyler Eşanjörü" : "İç Ünite · Kondenser"}</h4>
+            <div className="my-5 space-y-2">
+              {[1, 2, 3].map((line) => <div key={line} className="h-2 rounded-full border border-orange-400/30" />)}
+            </div>
+            <ThermometerSun className="mx-auto h-12 w-12 text-orange-400" />
+            <p className="mt-4 text-center text-sm text-white/45">Isıyı aktarır · {targetTemp}°C</p>
+          </div>
+
+          <div className="rounded-xl border border-violet-400/30 bg-violet-400/10 p-4 text-center lg:col-start-2 lg:row-start-2">
+            <Droplets className="mx-auto mb-2 h-6 w-6 text-violet-300" />
+            <p className="text-sm font-bold text-violet-200">Genleşme Valfi</p>
+            <p className="text-[10px] text-white/35">Basınç ↓ · Sıcaklık ↓</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 flex flex-wrap justify-center gap-5 text-[10px] uppercase tracking-wider text-white/35">
+        <span className="flex items-center gap-2"><i className="h-2 w-2 rounded-full bg-orange-400" /> Yüksek basınç / sıcak gaz</span>
+        <span className="flex items-center gap-2"><i className="h-2 w-2 rounded-full bg-violet-400" /> Yüksek basınç / sıvı</span>
+        <span className="flex items-center gap-2"><i className="h-2 w-2 rounded-full bg-sky-400" /> Düşük basınç / soğuk gaz</span>
+      </div>
+    </motion.div>
+  );
+}
 
 const benefits = [
   {
@@ -187,7 +328,7 @@ export default function HeatPumpPage() {
                 className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/images/heat-pump.png"
+                  src="/images/heat-pump-branded.png"
                   alt="Thermaplus ısı pompası"
                   fill
                   className="object-cover"
@@ -249,7 +390,9 @@ export default function HeatPumpPage() {
               </p>
             </div>
 
-            <div className="relative mx-auto max-w-7xl">
+            <HeatPumpCycleDiagram />
+
+            <div className="relative mx-auto hidden max-w-7xl">
               <svg
                 viewBox="0 0 1200 560"
                 className="pointer-events-none absolute inset-x-0 top-2 z-0 hidden h-[560px] w-full overflow-visible lg:block"
@@ -376,7 +519,7 @@ export default function HeatPumpPage() {
               </h2>
               <div className="w-20 h-1.5 bg-[#ea580c] mx-auto rounded-full" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="mx-auto mb-12 grid max-w-xl grid-cols-1 gap-6">
               {sources.map((source, i) => (
                 <motion.div
                   key={source.title}
