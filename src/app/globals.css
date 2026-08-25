@@ -80,3 +80,52 @@
 .smooth-transition {
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Shared mobile safeguards for content-heavy marketing pages. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+button {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
+  }
+
+  .h-screen {
+    height: 100svh;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 11vw, 3.25rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 9vw, 2.75rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    max-width: 100%;
+  }
+}

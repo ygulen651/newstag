@@ -9,16 +9,10 @@ import { heatPumpProducts } from "@/lib/product-data";
 
 const solutionLinks: Record<string, { title: string; href: string }[]> = {
   "thermaplus-up-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
-  "thermaplus-fuzzy-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
-  "thermaplus-bcp": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
+  "thermaplus-boost-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
   "thermaplus-all": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
   "thermaplus-silent-pool-serisi": [{ title: "Konutlar", href: "/cozumlerimiz/konutlar" }],
   "thermaplus-commercial-pool": [{ title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" }],
-  "thermaplus-plus-serisi": [{ title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" }],
-  "thermaplus-commercial-sicak-su": [
-    { title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" },
-    { title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" },
-  ],
   "thermaplus-commercial-duo": [
     { title: "Sanayi Tesisleri", href: "/cozumlerimiz/sanayi-tesisleri" },
     { title: "Ticari İşletmeler", href: "/cozumlerimiz/ticari-isletmeler" },
@@ -69,6 +63,23 @@ export default async function HeatPumpProductPage({
                 <p className="text-xl text-gray-600 font-light leading-relaxed mb-10">
                   {product.description}
                 </p>
+                {product.options && (
+                  <div className="mb-10">
+                    <h2 className="mb-4 text-sm font-bold uppercase tracking-widest text-gray-400">
+                      Kapasite Seçenekleri
+                    </h2>
+                    <div className="flex flex-wrap gap-3">
+                      {product.options.map((option) => (
+                        <span
+                          key={option}
+                          className="rounded-xl border border-blue-100 bg-white px-4 py-2.5 text-sm font-bold text-[#1e3a8a] shadow-sm"
+                        >
+                          {option}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="space-y-4">
                   {product.specs.map((spec) => (
                     <div key={spec} className="flex items-start gap-3 text-gray-700">
@@ -90,6 +101,52 @@ export default async function HeatPumpProductPage({
             </div>
           </div>
         </section>
+
+        {product.technicalTable && (
+          <section className="bg-[#f8fafc] py-24">
+            <div className="container mx-auto px-6">
+              <div className="mb-10 max-w-3xl">
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#ea580c]">
+                  Model Karşılaştırma
+                </span>
+                <h2 className="mt-4 text-4xl font-bold text-[#1e3a8a]">
+                  Teknik Özellikler
+                </h2>
+                <p className="mt-4 text-gray-500">
+                  Projenize uygun kapasiteyi temel performans değerleriyle karşılaştırın.
+                </p>
+              </div>
+              <div className="overflow-x-auto rounded-[28px] border border-blue-100 bg-white shadow-sm">
+                <table className="w-full min-w-[720px] border-collapse text-left">
+                  <thead>
+                    <tr className="bg-[#1e3a8a] text-white">
+                      <th className="px-6 py-5 text-sm font-bold">Teknik değer</th>
+                      {product.technicalTable.columns.map((column) => (
+                        <th key={column} className="whitespace-nowrap px-5 py-5 text-center text-sm font-bold">
+                          {column}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {product.technicalTable.rows.map((row, index) => (
+                      <tr key={row.label} className={index % 2 === 0 ? "bg-white" : "bg-blue-50/50"}>
+                        <th className="whitespace-nowrap border-t border-blue-50 px-6 py-4 text-sm font-bold text-[#1e3a8a]">
+                          {row.label}
+                        </th>
+                        {row.values.map((value, valueIndex) => (
+                          <td key={`${row.label}-${valueIndex}`} className="whitespace-nowrap border-t border-blue-50 px-5 py-4 text-center text-sm text-gray-600">
+                            {value}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="py-24 bg-white">
           <div className="container mx-auto px-6 max-w-4xl">

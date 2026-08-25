@@ -28,7 +28,7 @@ import { bessProducts } from "@/lib/product-data";
 const productCardImages: Record<string, string> = {
   "ev-tipi-bess": "/images/residential-solutions.png",
   "tasinabilir-bess": "/images/limited-grid-event.png",
-  "sivi-sogutmali-kabinet-bess": "/images/industry-automotive.jpg",
+  "sivi-sogutmali-kabinet-bess": "/images/car.png",
   "flexcube-konteyner-bess": "/images/limited-grid-quarry.png",
   "konteyner-tipi-bess": "/images/12121.png",
 };

@@ -79,8 +79,27 @@ function HeatPumpCycleDiagram() {
   const isCooling = mode === "cooling";
   const isWater = mode === "water";
   const targetTemp = isCooling ? 18 : isWater ? 55 : 22;
-  const cop = isCooling ? "3.8" : isWater ? "3.1" : "3.3";
-  const hotColor = isCooling ? "#38bdf8" : "#f97316";
+  const cop = Math.max(
+    1.8,
+    Math.min(
+      5.5,
+      isCooling
+        ? 3.8 - (outsideTemp - 7) * 0.035
+        : isWater
+          ? 3.1 + (outsideTemp - 7) * 0.045
+          : 3.3 + (outsideTemp - 7) * 0.055,
+    ),
+  ).toFixed(1);
+  const hotColor = "#f97316";
+  const coldColor = "#38bdf8";
+  const outsideTitle = isCooling ? "Dış Ünite · Kondenser" : "Dış Ünite · Evaporatör";
+  const insideTitle = isCooling
+    ? "İç Ünite · Evaporatör"
+    : isWater
+      ? "Boyler Eşanjörü"
+      : "İç Ünite · Kondenser";
+  const outsideAction = isCooling ? "Dış ortama ısı verir" : "Havadan ısı alır";
+  const insideAction = isCooling ? "İç ortamdan ısı alır" : "Isıyı aktarır";
 
   const modes: { id: HeatMode; label: string; icon: React.ElementType }[] = [
     { id: "heating", label: "Isıtma", icon: ThermometerSun },
@@ -155,15 +174,15 @@ function HeatPumpCycleDiagram() {
 
       <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-[#060c17] p-5 md:p-7">
         <svg viewBox="0 0 1000 560" className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" aria-hidden="true">
-          <path d="M205 165 H420 Q500 165 500 255" fill="none" stroke="#38bdf8" strokeWidth="5" opacity=".45" />
-          <path d="M500 255 Q500 165 580 165 H795" fill="none" stroke={hotColor} strokeWidth="5" opacity=".55" />
+          <path d="M205 165 H420 Q500 165 500 255" fill="none" stroke={isCooling ? hotColor : coldColor} strokeWidth="5" opacity=".55" />
+          <path d="M500 255 Q500 165 580 165 H795" fill="none" stroke={isCooling ? coldColor : hotColor} strokeWidth="5" opacity=".55" />
           <path d="M795 395 V485 H205 V395" fill="none" stroke="#a78bfa" strokeWidth="5" opacity=".45" />
           {[0, 1, 2, 3].map((item) => (
             <motion.circle
               key={item}
               r="7"
-              fill={item < 2 ? "#38bdf8" : hotColor}
-              animate={{ offsetDistance: ["0%", "100%"] }}
+              fill={item < 2 ? (isCooling ? hotColor : coldColor) : (isCooling ? coldColor : hotColor)}
+              animate={{ offsetDistance: isCooling ? ["100%", "0%"] : ["0%", "100%"] }}
               transition={{ repeat: Infinity, duration: 4, delay: item * 0.75, ease: "linear" }}
               style={{ offsetPath: "path('M205 165 H420 Q500 165 500 255 Q500 165 580 165 H795 V395 V485 H205 V395')" }}
             />
@@ -171,16 +190,16 @@ function HeatPumpCycleDiagram() {
         </svg>
 
         <div className="relative z-10 grid grid-cols-1 gap-5 lg:grid-cols-[1fr_220px_1fr] lg:grid-rows-[1fr_auto] lg:items-center lg:gap-10">
-          <div className="rounded-[24px] border border-sky-400/30 bg-sky-400/[0.07] p-6 lg:row-start-1">
-            <p className="text-xs font-bold uppercase tracking-widest text-sky-300">Dış Ortam</p>
-            <h4 className="mt-2 text-xl font-bold">Dış Ünite · Evaporatör</h4>
+          <div className={`rounded-[24px] border p-6 lg:row-start-1 ${isCooling ? "border-orange-400/30 bg-orange-400/[0.07]" : "border-sky-400/30 bg-sky-400/[0.07]"}`}>
+            <p className={`text-xs font-bold uppercase tracking-widest ${isCooling ? "text-orange-300" : "text-sky-300"}`}>Dış Ortam</p>
+            <h4 className="mt-2 text-xl font-bold">{outsideTitle}</h4>
             <div className="my-5 space-y-2">
-              {[1, 2, 3].map((line) => <div key={line} className="h-2 rounded-full border border-sky-400/30" />)}
+              {[1, 2, 3].map((line) => <div key={line} className={`h-2 rounded-full border ${isCooling ? "border-orange-400/30" : "border-sky-400/30"}`} />)}
             </div>
             <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 3, ease: "linear" }} className="mx-auto w-fit">
-              <Wind className="h-12 w-12 text-sky-400" />
+              <Wind className={`h-12 w-12 ${isCooling ? "text-orange-400" : "text-sky-400"}`} />
             </motion.div>
-            <p className="mt-4 text-center text-sm text-white/45">Havadan ısı alır · {outsideTemp}°C</p>
+            <p className="mt-4 text-center text-sm text-white/45">{outsideAction} · {outsideTemp}°C</p>
           </div>
 
           <div className="flex flex-col items-center lg:row-start-1">
@@ -195,14 +214,14 @@ function HeatPumpCycleDiagram() {
             </motion.div>
           </div>
 
-          <div className="rounded-[24px] border border-orange-400/30 bg-orange-400/[0.07] p-6 lg:row-start-1">
-            <p className="text-xs font-bold uppercase tracking-widest text-orange-300">{isWater ? "Su Devresi" : "İç Ortam"}</p>
-            <h4 className="mt-2 text-xl font-bold">{isWater ? "Boyler Eşanjörü" : "İç Ünite · Kondenser"}</h4>
+          <div className={`rounded-[24px] border p-6 lg:row-start-1 ${isCooling ? "border-sky-400/30 bg-sky-400/[0.07]" : "border-orange-400/30 bg-orange-400/[0.07]"}`}>
+            <p className={`text-xs font-bold uppercase tracking-widest ${isCooling ? "text-sky-300" : "text-orange-300"}`}>{isWater ? "Su Devresi" : "İç Ortam"}</p>
+            <h4 className="mt-2 text-xl font-bold">{insideTitle}</h4>
             <div className="my-5 space-y-2">
-              {[1, 2, 3].map((line) => <div key={line} className="h-2 rounded-full border border-orange-400/30" />)}
+              {[1, 2, 3].map((line) => <div key={line} className={`h-2 rounded-full border ${isCooling ? "border-sky-400/30" : "border-orange-400/30"}`} />)}
             </div>
-            <ThermometerSun className="mx-auto h-12 w-12 text-orange-400" />
-            <p className="mt-4 text-center text-sm text-white/45">Isıyı aktarır · {targetTemp}°C</p>
+            <ThermometerSun className={`mx-auto h-12 w-12 ${isCooling ? "text-sky-400" : "text-orange-400"}`} />
+            <p className="mt-4 text-center text-sm text-white/45">{insideAction} · {targetTemp}°C</p>
           </div>
 
           <div className="rounded-xl border border-violet-400/30 bg-violet-400/10 p-4 text-center lg:col-start-2 lg:row-start-2">
@@ -621,9 +640,9 @@ export default function HeatPumpPage() {
                         <Link
                           key={product.slug}
                           href={`/isi-pompasi/${product.slug}`}
-                          className="group bg-white rounded-[24px] p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex gap-5 items-center"
+                          className="group flex flex-col items-stretch gap-5 rounded-[24px] border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:flex-row sm:items-center"
                         >
-                          <div className="relative w-32 sm:w-36 aspect-square rounded-[18px] overflow-hidden bg-gray-50 shrink-0">
+                          <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-[18px] bg-gray-50 sm:aspect-square sm:w-36">
                             <Image
                               src={product.image}
                               alt={product.title}
@@ -638,6 +657,11 @@ export default function HeatPumpPage() {
                             <p className="text-gray-500 font-light leading-relaxed mb-3 text-sm line-clamp-2">
                               {product.summary}
                             </p>
+                            {product.options && (
+                              <p className="mb-3 line-clamp-2 text-xs font-bold leading-relaxed text-[#ea580c]">
+                                {product.options.join(" · ")}
+                              </p>
+                            )}
                             <span className="inline-flex items-center gap-2 font-bold text-sm text-[#1e3a8a] group-hover:text-[#ea580c]">
                               Detayları İncele <ArrowRight className="w-4 h-4" />
                             </span>

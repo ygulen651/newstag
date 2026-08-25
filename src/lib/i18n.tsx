@@ -137,7 +137,7 @@ const en: Dictionary = {
     bess: "Inspur BESS",
     heatPump: "Thermaplus Heat Pump",
     brandNote: "A Saray Holding company.",
-    location: "Istanbul, Türkiye",
+    location: "Istanbul, Turkiye",
   },
 };
 

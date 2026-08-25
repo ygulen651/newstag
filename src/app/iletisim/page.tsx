@@ -78,10 +78,11 @@ export default function ContactPage() {
                     {
                       icon: MapPin,
                       title: "Genel Merkez",
-                      desc: "Saray Holding Genel Merkezi\nİstanbul, Türkiye",
+                      desc: "Yıldızhan Cad. Saray İş Merkezi No:4, Köşe Sk., 34887 Sancaktepe/İstanbul",
+                      href: "https://www.google.com/maps/place/data=!4m2!3m1!1s0x14cad3c555555555:0xc12bb9adc218764f?sa=X&ved=1t:8290&ictx=111",
                     },
-                    { icon: Phone, title: "Telefon", desc: "+90 (212) 000 00 00" },
-                    { icon: Mail, title: "E-posta", desc: "info@newstag.com.tr" },
+                    { icon: Phone, title: "Telefon", desc: "0 216 311 00 67", href: "tel:+902163110067" },
+                    { icon: Mail, title: "E-posta", desc: "info@newstag.com.tr", href: "mailto:info@newstag.com.tr" },
                   ].map((item, i) => (
                     <motion.div
                       key={item.title}
@@ -96,9 +97,14 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-[#020817] mb-2">{item.title}</h3>
-                        <p className="text-lg text-gray-500 whitespace-pre-line font-light leading-relaxed">
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                          className="text-lg text-gray-500 whitespace-pre-line font-light leading-relaxed transition-colors hover:text-[#ea580c]"
+                        >
                           {item.desc}
-                        </p>
+                        </a>
                       </div>
                     </motion.div>
                   ))}
@@ -109,7 +115,7 @@ export default function ContactPage() {
               <div className="relative">
                 <motion.div
                   style={{ y: formY }}
-                  className="bg-white rounded-[40px] p-10 md:p-16 shadow-2xl shadow-[#ea580c]/10 border border-gray-100 relative z-10"
+                  className="relative z-10 rounded-[28px] border border-gray-100 bg-white p-6 shadow-2xl shadow-[#ea580c]/10 sm:rounded-[40px] md:p-16"
                 >
                   <div className="mb-12">
                     <h3 className="text-3xl font-bold text-[#020817] mb-4">Mesaj Gönderin</h3>

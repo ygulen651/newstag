@@ -86,11 +86,11 @@ export default function ServicePage() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+902120000000"
+                    href="tel:+902163110067"
                     className="inline-flex items-center gap-3 bg-[#1e3a8a] text-white px-7 py-4 rounded-full font-bold hover:bg-[#152e73] transition-colors"
                   >
                     <Phone className="w-5 h-5" />
-                    +90 (212) 000 00 00
+                    0 216 311 00 67
                   </a>
                   <a
                     href="mailto:info@newstag.com.tr"
@@ -227,10 +227,14 @@ export default function ServicePage() {
                       <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                         Lokasyon
                       </div>
-                      <p className="text-[#1e3a8a] font-bold">İstanbul, Türkiye</p>
-                      <p className="text-gray-500 font-light mt-1">
-                        Newstag Enerji Genel Merkez
-                      </p>
+                      <a
+                        href="https://www.google.com/maps/place/data=!4m2!3m1!1s0x14cad3c555555555:0xc12bb9adc218764f?sa=X&ved=1t:8290&ictx=111"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-bold text-[#1e3a8a] transition-colors hover:text-[#ea580c]"
+                      >
+                        Yıldızhan Cad. Saray İş Merkezi No:4, Köşe Sk., 34887 Sancaktepe/İstanbul
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -239,7 +243,9 @@ export default function ServicePage() {
                       <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                         Telefon
                       </div>
-                      <p className="text-[#1e3a8a] font-bold">+90 (212) 000 00 00</p>
+                      <a href="tel:+902163110067" className="font-bold text-[#1e3a8a] transition-colors hover:text-[#ea580c]">
+                        0 216 311 00 67
+                      </a>
                       <p className="text-gray-500 font-light mt-1">
                         Servis ve destek koordinasyonu
                       </p>

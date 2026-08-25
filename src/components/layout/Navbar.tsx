@@ -116,7 +116,7 @@ export default function Navbar() {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            className="fixed inset-0 bg-white z-[100] p-8 flex flex-col gap-6 overflow-y-auto"
+            className="fixed inset-0 z-[100] flex h-[100svh] w-screen flex-col gap-5 overflow-y-auto bg-white p-6 sm:gap-6 sm:p-8"
           >
             <div className="flex justify-between items-center mb-8">
               <div className="text-xl font-bold text-[#ea580c]">NEWSTAG ENERJİ</div>

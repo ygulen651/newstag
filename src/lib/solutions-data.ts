@@ -88,28 +88,28 @@ const bessFlexCubeProduct: SolutionProduct = {
   image: "/images/products/bess-flexcube.png",
 };
 
+const limitedGridFlexCubeProduct: SolutionProduct = {
+  eyebrow: "Sınırlı Şebeke ve Off-Grid",
+  title: "FlexCube Konteyner Tipi BESS",
+  desc: "Şebeke olmayan veya ani güç isteyen noktalar için 10 ft entegre, şarj et & taşı yapısına uygun tak-çalıştır çözüm.",
+  href: "/bess/flexcube-konteyner-bess",
+  image: "/images/limited-grid-quarry.png",
+};
+
+const portableBessProduct: SolutionProduct = {
+  eyebrow: "Mobil Güç Çözümleri",
+  title: "Taşınabilir Enerji Depolama",
+  desc: "Dış mekân etkinlikleri ve acil durum senaryoları için kompakt, hafif ve çok işlevli taşınabilir güç kaynağı.",
+  href: "/bess/tasinabilir-bess",
+  image: "/images/limited-grid-event.png",
+};
+
 const bessHomeProduct: SolutionProduct = {
   eyebrow: "Enerji Depolama",
   title: "Inspur Ev Tipi Enerji Depolama",
   desc: "Çatı GES, elektrikli araç şarjı ve kritik ev yükleriyle entegre çalışan 5-10 kWh modüler ev bataryası.",
   href: "/bess/ev-tipi-bess",
   image: "/images/products/bess-ev-tipi.png",
-};
-
-const pbt48100Product: SolutionProduct = {
-  eyebrow: "Telekom Güç Çözümleri",
-  title: "PBT-48100 Power Unit",
-  desc: "Sınırlı şebeke ve telekom uygulamalarında kesintisiz güç desteği sunan kompakt enerji ünitesi.",
-  href: "/bess/pbt-48100",
-  image: "/images/789f8331-8ef5-44dd-9fee-538f29300149.jpg",
-};
-
-const pbt48150Product: SolutionProduct = {
-  eyebrow: "Telekom Güç Çözümleri",
-  title: "PBT-48150 Power Unit",
-  desc: "Telekom ve saha operasyonları için yüksek kapasiteli, taşınabilir ve dayanıklı enerji ünitesi.",
-  href: "/bess/pbt-48150",
-  image: "/images/49344c8f-d5a1-412a-a165-77edc008b086.jpg",
 };
 
 const heatPumpIndustrialProduct: SolutionProduct = {
@@ -268,25 +268,25 @@ export const solutions: Solution[] = [
         icon: Factory,
         title: "Demir-Çelik",
         desc: "Yüksek proses ısısı, yoğun elektrik tüketimi ve kesintisiz üretim ihtiyacı.",
-        thumbnail: "/images/industry-steel.jpg",
+        thumbnail: "/images/industry-steel-v2.png",
       },
       {
         icon: Factory,
         title: "Çimento",
         desc: "Pik yükler, karbon ayak izi ve atık ısı geri kazanımı için güçlü dönüşüm alanı.",
-        thumbnail: "/images/industry-cement.jpg",
+        thumbnail: "/images/industry-cement-v3.png",
       },
       {
         icon: Factory,
         title: "Otomotiv",
         desc: "Robotik hatlar, boyahane ve iklimlendirme yüklerinde verimlilik odağı.",
-        thumbnail: "/images/industry-automotive.jpg",
+        thumbnail: "/images/industry-automotive-v2.png",
       },
       {
         icon: Factory,
         title: "Beyaz Eşya",
         desc: "Süreklilik, kalite kontrol ve enerji maliyeti yönetiminin kritik olduğu üretim.",
-        thumbnail: "/images/industry-white-goods.jpg",
+        thumbnail: "/images/industry-white-goods-v2.png",
       },
     ],
     whyBess: commonBessBenefits,
@@ -310,7 +310,7 @@ export const solutions: Solution[] = [
     title: "Ticari İşletmeler",
     navTitle: "Ticari İşletmeler",
     icon: Building2,
-    image: "/images/OTEL.jpg",
+    image: "/images/commercial-hotel-hero-hd.png",
     shortDesc:
       "AVM, otel, plaza ve perakende zincirleri için enerji maliyetini düşüren, arz güvenliği sağlayan çözümler.",
     intro: [
@@ -556,7 +556,7 @@ export const solutions: Solution[] = [
         icon: Server,
         title: "Telekom Sistemleri",
         desc: "Şebekenin bulunmadığı veya kesintili olduğu baz istasyonu ve telekom sahalarında haberleşme altyapısını kesintisiz besleyen güvenilir enerji depolama.",
-        image: "/images/data-center-real.png",
+        image: "/images/telecom-tower-v2.png",
       },
     ],
     whyBess: [
@@ -591,10 +591,7 @@ export const solutions: Solution[] = [
         desc: "Şebekeye uzak sahalarda taşınabilir depolama ile operasyonu mümkün kılma.",
       },
     ],
-    products: [
-      pbt48100Product,
-      pbt48150Product,
-    ],
+    products: [limitedGridFlexCubeProduct, portableBessProduct],
   },
 ];
 

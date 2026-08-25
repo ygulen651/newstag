@@ -169,7 +169,7 @@ export default function AboutPage() {
                 className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/images/industry-automotive.jpg"
+                  src="/images/hakımızda yanına.png"
                   alt="Saray Holding endüstriyel üretim deneyimi"
                   fill
                   className="object-cover"
@@ -201,6 +201,13 @@ export default function AboutPage() {
 
         {/* Saray Holding */}
         <section className="py-32 bg-[#0b1f4e] text-white relative overflow-hidden">
+          <Image
+            src="/images/8592d1b7-795b-41e0-9b1b-ec1a5a49397d.png"
+            alt="Saray Holding yenilenebilir enerji tesisi"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f4e]/90 via-[#0b1f4e]/60 to-[#0b1f4e]/10" />
           <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl">

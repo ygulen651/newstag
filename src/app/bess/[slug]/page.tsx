@@ -99,10 +99,14 @@ export default async function BessProductPage({
               </div>
               <div className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl bg-white">
                 <Image
-                  src={product.image}
+                  src={product.detailImage ?? product.image}
                   alt={product.title}
                   fill
-                  className={product.imageFit === "contain" ? "object-contain p-10" : "object-cover"}
+                  className={
+                    (product.detailImageFit ?? product.imageFit) === "contain"
+                      ? "object-contain p-10"
+                      : "object-cover"
+                  }
                   priority
                 />
               </div>

@@ -21,7 +21,7 @@ export default function Scenarios() {
     : "/bess#urunler";
 
   return (
-    <section className="relative h-[820px] w-full overflow-hidden bg-[#1e3a8a]">
+    <section className="relative w-full overflow-hidden bg-[#1e3a8a] md:h-[820px]">
       {/* Section Title */}
       <div className="absolute top-12 left-0 w-full z-20 text-center">
         <span className="text-xs font-bold uppercase tracking-[0.4em] text-[#f97316] mb-3 block">
@@ -54,7 +54,7 @@ export default function Scenarios() {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-center">
+      <div className="container relative z-10 mx-auto flex flex-col px-6 pb-8 pt-36 md:h-full md:justify-center md:py-0">
         <div className="max-w-2xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -75,7 +75,7 @@ export default function Scenarios() {
                 {active.shortDesc}
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap">
                 <Link
                   href={productsHref}
                   className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 font-bold text-[#1e3a8a] transition-colors hover:bg-[#ea580c] hover:text-white"
@@ -99,7 +99,7 @@ export default function Scenarios() {
       </div>
 
       {/* Bottom Nav Bar */}
-      <div className="absolute bottom-12 left-0 w-full z-20 px-6">
+      <div className="relative z-20 w-full px-6 pb-8 md:absolute md:bottom-12 md:left-0 md:pb-0">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 gap-1 rounded-[32px] border border-white/10 bg-black/40 p-2 shadow-2xl backdrop-blur-2xl md:grid-cols-4 xl:grid-cols-7">
             {solutions.map((s) => (

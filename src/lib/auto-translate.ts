@@ -45,6 +45,8 @@ const exactTranslations: Record<string, string> = {
   Telefon: "Phone",
   "E-posta": "Email",
   "Genel Merkez": "Head Office",
+  "Yıldızhan Cad. Saray İş Merkezi No:4, Köşe Sk., 34887 Sancaktepe/İstanbul":
+    "Yildizhan Avenue, Saray Business Center No. 4, Kose Street, 34887 Sancaktepe/Istanbul",
 
   "Enerjiyi Bugünden": "Carry Energy From Today",
   "Geleceğe Taşıyın": "Into the Future",
@@ -217,6 +219,34 @@ const exactTranslations: Record<string, string> = {
   "Aradığınız sayfa kaldırılmış, adı değiştirilmiş veya geçici olarak kullanım dışı olabilir.":
     "The page you are looking for may have been removed, renamed, or temporarily unavailable.",
   "Ana Sayfaya Dön": "Back to Home",
+  "Kapasite Seçenekleri": "Capacity Options",
+  "Model Karşılaştırma": "Model Comparison",
+  "Teknik Özellikler": "Technical Specifications",
+  "Teknik değer": "Technical specification",
+  "Projenize uygun kapasiteyi temel performans değerleriyle karşılaştırın.":
+    "Compare the key performance values to select the right capacity for your project.",
+  "Isıtma kapasitesi (kW)": "Heating capacity (kW)",
+  "COP aralığı": "COP range",
+  "Güç kaynağı": "Power supply",
+  "Ses seviyesi, 1 m": "Sound level at 1 m",
+  "Nominal ısıtma kapasitesi": "Nominal heating capacity",
+  "Enerji sınıfı": "Energy class",
+  "Net ağırlık": "Net weight",
+  "Tavsiye edilen havuz (m³)": "Recommended pool volume (m³)",
+  "Sıcak su kapasitesi (kW)": "Domestic hot water capacity (kW)",
+  "Ses basınç seviyesi": "Sound pressure level",
+  "Thermaplus Up Serisi; ev, villa ve küçük ticari alanlarda dört mevsim verimli ısıtma ve soğutma için geliştirilmiştir. R32 soğutucu akışkan, DC inverter kontrol ve Wi-Fi destekli akıllı kullanım altyapısıyla konforu dengeli enerji tüketimiyle bir araya getirir.":
+    "Thermaplus Up Series is designed for efficient year-round heating and cooling in homes, villas, and small commercial spaces. Its R32 refrigerant, DC inverter control, and Wi-Fi-enabled smart controls combine comfort with balanced energy consumption.",
+  "Thermaplus Boost Serisi; ev, villa ve küçük ticari alanlarda yüksek sıcaklık ihtiyacına uygun verimli ısıtma, soğutma ve kullanım sıcak suyu için geliştirilmiştir. R290 soğutucu akışkan, DC inverter kontrol ve Wi-Fi desteğiyle güçlü performansı dengeli enerji tüketimiyle sunar.":
+    "Thermaplus Boost Series is designed for efficient heating, cooling, and domestic hot water in homes, villas, and small commercial spaces with high-temperature requirements. Its R290 refrigerant, DC inverter control, and Wi-Fi support deliver powerful performance with balanced energy consumption.",
+  "Thermaplus All Serisi; konut, villa, otel ve işletmelerin kullanım sıcak suyu ihtiyacı için geliştirilmiştir. 200 ve 300 litre tank seçenekleri, R290 soğutucu akışkan, Wi-Fi kontrol ve yedek ısıtıcıyla 75 °C'ye kadar sıcak su desteği sunar.":
+    "Thermaplus All Series is designed to meet domestic hot water needs in homes, villas, hotels, and businesses. It offers 200- and 300-liter tank options, R290 refrigerant, Wi-Fi control, and hot water up to 75°C with backup heating.",
+  "Thermaplus Silent Pool Serisi; villa, bahçe ve açık havuz projelerinde su sıcaklığını dengeli biçimde korumak için geliştirilmiştir. R32 soğutucu akışkan, sessiz çalışma karakteri, titanyum eşanjör ve Wi-Fi destekli kontrol yapısıyla dört mevsim havuz konforu sağlar.":
+    "Thermaplus Silent Pool Series is designed to maintain balanced water temperatures in villa, garden, and outdoor pool projects. Its R32 refrigerant, quiet operation, titanium heat exchanger, and Wi-Fi-enabled controls provide year-round pool comfort.",
+  "Thermaplus Commercial Pool Serisi; otel, spor tesisi, sosyal tesis ve yüksek hacimli havuz projeleri için geliştirilmiştir. Altı kapasite seçeneği, R410A soğutucu akışkan ve PVC kabuk içinde titanyum eşanjör yapısıyla havuz suyunu kontrollü ve verimli biçimde ısıtır.":
+    "Thermaplus Commercial Pool Series is designed for hotels, sports facilities, social facilities, and large-volume pool projects. Six capacity options, R410A refrigerant, and a titanium heat exchanger in a PVC shell provide controlled and efficient pool heating.",
+  "Thermaplus Commercial Duo Serisi; otel, apartman, ticari tesis ve merkezi sistem projelerinde yüksek kapasiteli ısıtma, soğutma ve kullanım sıcak suyu ihtiyacı için geliştirilmiştir. R290 soğutucu akışkan, Wi-Fi kontrol ve 78 °C'ye kadar çalışma suyu desteğiyle güçlü ticari performans sunar.":
+    "Thermaplus Commercial Duo Series is designed for high-capacity heating, cooling, and domestic hot water in hotels, apartment buildings, commercial facilities, and central systems. R290 refrigerant, Wi-Fi control, and water temperatures up to 78°C deliver powerful commercial performance.",
 };
 
 const phraseTranslations: Record<string, string> = {
@@ -466,6 +496,19 @@ const wordTranslations: Record<string, string> = {
 
 const lowercaseWordTranslations: Record<string, string> = {
   acil: "emergency",
+  akışkan: "refrigerant",
+  aralığı: "range",
+  ağırlık: "weight",
+  destekli: "enabled",
+  eşanjör: "heat exchanger",
+  hacimleri: "volumes",
+  litre: "liter",
+  modeli: "model",
+  seviyesi: "level",
+  soğutucu: "refrigerant",
+  sıcaklık: "temperature",
+  tank: "tank",
+  tavsiye: "recommended",
   ağ: "network",
   ağı: "network",
   akış: "flow",
